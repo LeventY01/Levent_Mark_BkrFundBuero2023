@@ -50,7 +50,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
         {
             dGVFundgegenstand.Rows.Clear();
             dGVFundgegenstand.ColumnCount = 3;
-            dGVFundgegenstand.Columns[0].Name = "Beschreibung";
+            dGVFundgegenstand.Columns[0].Name = "Beshreibung";
             dGVFundgegenstand.Columns[1].Name = "Funddatum";
             dGVFundgegenstand.Columns[2].Name = "Fundrt";
 
