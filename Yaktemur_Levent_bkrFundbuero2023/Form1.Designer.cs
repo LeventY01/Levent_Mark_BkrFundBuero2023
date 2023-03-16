@@ -74,6 +74,17 @@
             btnGefunden = new Button();
             cBJahr = new ComboBox();
             lblJahr = new Label();
+            tabPage1 = new TabPage();
+            button2 = new Button();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            dateTimePicker1 = new DateTimePicker();
+            checkBox2 = new CheckBox();
+            comboBox2 = new ComboBox();
+            textBox4 = new TextBox();
+            comboBox1 = new ComboBox();
             tableLayoutPanel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tPFundgegenstand.SuspendLayout();
@@ -89,6 +100,7 @@
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cStatistik).BeginInit();
             panel3.SuspendLayout();
+            tabPage1.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -114,6 +126,7 @@
             tabControl1.Controls.Add(tPLogin);
             tabControl1.Controls.Add(tPVermittlung);
             tabControl1.Controls.Add(tPStatistik);
+            tabControl1.Controls.Add(tabPage1);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(3, 3);
             tabControl1.Name = "tabControl1";
@@ -308,7 +321,7 @@
             // lblFundgegenstand
             // 
             lblFundgegenstand.AutoSize = true;
-            lblFundgegenstand.Location = new Point(630, 27);
+            lblFundgegenstand.Location = new Point(626, 27);
             lblFundgegenstand.Name = "lblFundgegenstand";
             lblFundgegenstand.Size = new Size(110, 20);
             lblFundgegenstand.TabIndex = 8;
@@ -563,6 +576,112 @@
             lblJahr.TabIndex = 0;
             lblJahr.Text = "Jahr:";
             // 
+            // tabPage1
+            // 
+            tabPage1.Controls.Add(button2);
+            tabPage1.Controls.Add(label4);
+            tabPage1.Controls.Add(label3);
+            tabPage1.Controls.Add(label2);
+            tabPage1.Controls.Add(label1);
+            tabPage1.Controls.Add(dateTimePicker1);
+            tabPage1.Controls.Add(checkBox2);
+            tabPage1.Controls.Add(comboBox2);
+            tabPage1.Controls.Add(textBox4);
+            tabPage1.Controls.Add(comboBox1);
+            tabPage1.Location = new Point(4, 32);
+            tabPage1.Name = "tabPage1";
+            tabPage1.Size = new Size(848, 374);
+            tabPage1.TabIndex = 5;
+            tabPage1.Text = "Fundgegenstand Aufgeben";
+            tabPage1.UseVisualStyleBackColor = true;
+            tabPage1.Click += tabPage1_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(329, 319);
+            button2.Name = "button2";
+            button2.Size = new Size(195, 29);
+            button2.TabIndex = 9;
+            button2.Text = "fund_melden";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(63, 146);
+            label4.Name = "label4";
+            label4.Size = new Size(84, 20);
+            label4.TabIndex = 8;
+            label4.Text = "Funddatum";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(453, 32);
+            label3.Name = "label3";
+            label3.Size = new Size(60, 20);
+            label3.TabIndex = 7;
+            label3.Text = "Fundort";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(268, 32);
+            label2.Name = "label2";
+            label2.Size = new Size(98, 20);
+            label2.TabIndex = 6;
+            label2.Text = "Beschreibung";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(63, 32);
+            label1.Name = "label1";
+            label1.Size = new Size(74, 20);
+            label1.TabIndex = 5;
+            label1.Text = "Kategorie";
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(63, 179);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(250, 27);
+            dateTimePicker1.TabIndex = 4;
+            // 
+            // checkBox2
+            // 
+            checkBox2.AutoSize = true;
+            checkBox2.Location = new Point(641, 67);
+            checkBox2.Name = "checkBox2";
+            checkBox2.Size = new Size(86, 24);
+            checkBox2.TabIndex = 3;
+            checkBox2.Text = "Anonym";
+            checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(453, 67);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(151, 28);
+            comboBox2.TabIndex = 2;
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(268, 68);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(125, 27);
+            textBox4.TabIndex = 1;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(63, 67);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 0;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -592,6 +711,8 @@
             ((System.ComponentModel.ISupportInitialize)cStatistik).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            tabPage1.ResumeLayout(false);
+            tabPage1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -640,5 +761,16 @@
         private Label lblJahr;
         private Button btnVerloren;
         private Button btnGefunden;
+        private TabPage tabPage1;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private DateTimePicker dateTimePicker1;
+        private CheckBox checkBox2;
+        private ComboBox comboBox2;
+        private TextBox textBox4;
+        private ComboBox comboBox1;
+        private Button button2;
     }
 }

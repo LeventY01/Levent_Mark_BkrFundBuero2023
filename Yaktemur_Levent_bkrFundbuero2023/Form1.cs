@@ -36,13 +36,23 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             List<string> listData = dbase.QueryToList("SELECT Bezeichnung FROM kategorie;");
             cBKatAuswahl.DataSource = listData;
 
+            List<string> listData2 = dbase.QueryToList("SELECT Bezeichnung FROM kategorie;");
+            comboBox1.DataSource = listData;
+
             // fill the comboBox3 with fundort data
-            comboBox3.Items.Clear();
             listData = dbase.QueryToList("SELECT Bezeichnung FROM fundort;");
             comboBox3.DataSource = listData;
 
             listData = dbase.QueryToList("SELECT YEAR(Funddatum) AS Jahr, COUNT(*) AS Anzahl_gefundene_Gegenstände FROM fundgegenstand GROUP BY YEAR(Funddatum);");
             cBJahr.DataSource = listData;
+
+
+            listData = dbase.QueryToList("SELECT Bezeichnung FROM fundort;");
+            comboBox2.DataSource = listData;
+
+
+
+
 
         }
 
@@ -151,13 +161,6 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             tBFundgegenstand.Clear();
             textBox2.Clear();
             textBox1.Clear();
-
-
-
-
-
-
-
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -178,6 +181,33 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             {
                 s.Points.AddXY(liste[i][0], liste[i][1]);
             }
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string kategorie = comboBox1.SelectedItem.ToString();
+            string beschreibung = textBox4.Text;
+            string fundortID = dbase.QueryToCell($"SELECT FundortID FROM fundort WHERE Bezeichnung = '{comboBox2.SelectedItem.ToString()}'");
+            string findernr = checkBox2.Checked ? "100" : null;
+            DateTime funddatum = dateTimePicker1.Value;
+
+            string katID = dbase.QueryToCell($"SELECT KatID FROM Kategorie WHERE Bezeichnung = '{kategorie}'");
+
+            dbase.QueryToList($"INSERT INTO fundgegenstand (KatID, Beschreibung, FundortID, FinderNr, EigentumNr, Funddatum) " +
+                $"VALUES ('{katID}', '{beschreibung}', '{fundortID}', '{findernr}', NULL, '{funddatum:yyyy-MM-dd}');");
+
+            MessageBox.Show("Erfolgreich Aufgegeben!");
+            comboBox1.SelectedIndex = -1;
+            textBox4.Clear();
+            comboBox2.SelectedIndex = -1;
+            checkBox2.Checked = false;
+            dateTimePicker1.Value = DateTime.Now;
+
         }
     }
 }
