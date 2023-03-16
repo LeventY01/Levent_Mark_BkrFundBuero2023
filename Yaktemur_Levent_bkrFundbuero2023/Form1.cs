@@ -27,8 +27,6 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
             Fill_Combobox();
 
-
-
         }
 
         private void Fill_Combobox()
@@ -49,11 +47,6 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
             listData = dbase.QueryToList("SELECT Bezeichnung FROM fundort;");
             comboBox2.DataSource = listData;
-
-
-
-
-
         }
 
         private void Fill_Daten()
@@ -193,20 +186,50 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             string kategorie = comboBox1.SelectedItem.ToString();
             string beschreibung = textBox4.Text;
             string fundortID = dbase.QueryToCell($"SELECT FundortID FROM fundort WHERE Bezeichnung = '{comboBox2.SelectedItem.ToString()}'");
-            string findernr = checkBox2.Checked ? "100" : null;
-            DateTime funddatum = dateTimePicker1.Value;
 
+            string findernr;
+            if (checkBox2.Checked)
+            {
+                findernr = "100"; // anonymous finder
+            }
+            else
+            {
+                // insert a new finder record
+                string vorname = textBox8.Text;
+                string nachname = textBox5.Text;
+                string telefonnummer = textBox7.Text;
+                string email = textBox6.Text;
+
+                dbase.QueryToList($"INSERT INTO finder (Vorname, Nachname, Telefonnummer, EMail) " +
+                    $"VALUES ('{vorname}', '{nachname}', '{telefonnummer}', '{email}');");
+
+                // get the new FinderNr
+                findernr = dbase.QueryToCell($"SELECT MAX(FinderNr) FROM finder").ToString();
+            }
+
+            DateTime funddatum = dateTimePicker1.Value;
             string katID = dbase.QueryToCell($"SELECT KatID FROM Kategorie WHERE Bezeichnung = '{kategorie}'");
 
             dbase.QueryToList($"INSERT INTO fundgegenstand (KatID, Beschreibung, FundortID, FinderNr, EigentumNr, Funddatum) " +
                 $"VALUES ('{katID}', '{beschreibung}', '{fundortID}', '{findernr}', NULL, '{funddatum:yyyy-MM-dd}');");
 
             MessageBox.Show("Erfolgreich Aufgegeben!");
+
+            // clear the form fields
             comboBox1.SelectedIndex = -1;
             textBox4.Clear();
             comboBox2.SelectedIndex = -1;
             checkBox2.Checked = false;
             dateTimePicker1.Value = DateTime.Now;
+            textBox8.Clear();
+            textBox5.Clear();
+            textBox7.Clear();
+            textBox6.Clear();
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
 
         }
     }

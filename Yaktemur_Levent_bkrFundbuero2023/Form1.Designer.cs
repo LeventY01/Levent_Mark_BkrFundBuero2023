@@ -75,6 +75,16 @@
             cBJahr = new ComboBox();
             lblJahr = new Label();
             tabPage1 = new TabPage();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            textBox8 = new TextBox();
+            textBox7 = new TextBox();
+            textBox6 = new TextBox();
+            textBox5 = new TextBox();
             button2 = new Button();
             label4 = new Label();
             label3 = new Label();
@@ -85,6 +95,7 @@
             comboBox2 = new ComboBox();
             textBox4 = new TextBox();
             comboBox1 = new ComboBox();
+            mySqlCommand1 = new MySqlConnector.MySqlCommand();
             tableLayoutPanel1.SuspendLayout();
             tabControl1.SuspendLayout();
             tPFundgegenstand.SuspendLayout();
@@ -115,7 +126,7 @@
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 92.44444F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.555555F));
-            tableLayoutPanel1.Size = new Size(901, 450);
+            tableLayoutPanel1.Size = new Size(1216, 555);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tabControl1
@@ -131,7 +142,7 @@
             tabControl1.Location = new Point(3, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(856, 410);
+            tabControl1.Size = new Size(1157, 507);
             tabControl1.SizeMode = TabSizeMode.FillToRight;
             tabControl1.TabIndex = 0;
             // 
@@ -141,7 +152,7 @@
             tPFundgegenstand.Location = new Point(4, 32);
             tPFundgegenstand.Name = "tPFundgegenstand";
             tPFundgegenstand.Padding = new Padding(3);
-            tPFundgegenstand.Size = new Size(848, 374);
+            tPFundgegenstand.Size = new Size(1149, 471);
             tPFundgegenstand.TabIndex = 0;
             tPFundgegenstand.Text = "Fundgegenstände";
             tPFundgegenstand.UseVisualStyleBackColor = true;
@@ -160,7 +171,7 @@
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 91.03261F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.967391F));
-            tableLayoutPanel2.Size = new Size(842, 368);
+            tableLayoutPanel2.Size = new Size(1143, 465);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // dGVFundgegenstand
@@ -171,7 +182,7 @@
             dGVFundgegenstand.Name = "dGVFundgegenstand";
             dGVFundgegenstand.RowHeadersWidth = 51;
             dGVFundgegenstand.RowTemplate.Height = 29;
-            dGVFundgegenstand.Size = new Size(672, 329);
+            dGVFundgegenstand.Size = new Size(915, 417);
             dGVFundgegenstand.TabIndex = 1;
             dGVFundgegenstand.CellContentClick += dGVFundgegenstand_CellContentClick;
             // 
@@ -180,9 +191,9 @@
             panel1.Controls.Add(cBKatAuswahl);
             panel1.Controls.Add(lblKategorie1);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(681, 3);
+            panel1.Location = new Point(924, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(158, 329);
+            panel1.Size = new Size(216, 417);
             panel1.TabIndex = 3;
             // 
             // cBKatAuswahl
@@ -191,7 +202,7 @@
             cBKatAuswahl.FormattingEnabled = true;
             cBKatAuswahl.Location = new Point(3, 23);
             cBKatAuswahl.Name = "cBKatAuswahl";
-            cBKatAuswahl.Size = new Size(149, 28);
+            cBKatAuswahl.Size = new Size(207, 28);
             cBKatAuswahl.TabIndex = 3;
             cBKatAuswahl.SelectedIndexChanged += cBKatAuswahl_SelectedIndexChanged;
             // 
@@ -209,7 +220,7 @@
             // 
             lblCount.Anchor = AnchorStyles.None;
             lblCount.AutoSize = true;
-            lblCount.Location = new Point(315, 341);
+            lblCount.Location = new Point(436, 434);
             lblCount.Name = "lblCount";
             lblCount.Size = new Size(48, 20);
             lblCount.TabIndex = 4;
@@ -234,7 +245,7 @@
             tPVerlustmeldung.Location = new Point(4, 32);
             tPVerlustmeldung.Name = "tPVerlustmeldung";
             tPVerlustmeldung.Padding = new Padding(3);
-            tPVerlustmeldung.Size = new Size(848, 374);
+            tPVerlustmeldung.Size = new Size(1149, 471);
             tPVerlustmeldung.TabIndex = 1;
             tPVerlustmeldung.Text = "Verlustmeldung";
             tPVerlustmeldung.UseVisualStyleBackColor = true;
@@ -262,7 +273,7 @@
             textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox2.Location = new Point(56, 117);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(201, 27);
+            textBox2.Size = new Size(217, 27);
             textBox2.TabIndex = 15;
             // 
             // textBox1
@@ -270,7 +281,7 @@
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             textBox1.Location = new Point(56, 202);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(201, 27);
+            textBox1.Size = new Size(217, 27);
             textBox1.TabIndex = 14;
             // 
             // lblTelefon
@@ -296,9 +307,9 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button1.Location = new Point(309, 322);
+            button1.Location = new Point(309, 419);
             button1.Name = "button1";
-            button1.Size = new Size(210, 29);
+            button1.Size = new Size(511, 29);
             button1.TabIndex = 11;
             button1.Text = "Verlust melden";
             button1.UseVisualStyleBackColor = true;
@@ -367,7 +378,7 @@
             tPLogin.Controls.Add(panel2);
             tPLogin.Location = new Point(4, 32);
             tPLogin.Name = "tPLogin";
-            tPLogin.Size = new Size(848, 374);
+            tPLogin.Size = new Size(1149, 471);
             tPLogin.TabIndex = 2;
             tPLogin.Text = "Admin login";
             tPLogin.UseVisualStyleBackColor = true;
@@ -382,23 +393,23 @@
             panel2.Controls.Add(tBUsername);
             panel2.Location = new Point(86, 27);
             panel2.Name = "panel2";
-            panel2.Size = new Size(665, 301);
+            panel2.Size = new Size(966, 398);
             panel2.TabIndex = 5;
             // 
             // tBPassword
             // 
             tBPassword.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            tBPassword.Location = new Point(136, 107);
+            tBPassword.Location = new Point(136, 156);
             tBPassword.Name = "tBPassword";
-            tBPassword.Size = new Size(366, 27);
+            tBPassword.Size = new Size(667, 27);
             tBPassword.TabIndex = 2;
             // 
             // btnLogin
             // 
             btnLogin.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            btnLogin.Location = new Point(219, 269);
+            btnLogin.Location = new Point(219, 366);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(210, 29);
+            btnLogin.Size = new Size(511, 29);
             btnLogin.TabIndex = 0;
             btnLogin.Text = "Login";
             btnLogin.UseVisualStyleBackColor = true;
@@ -408,7 +419,7 @@
             // 
             lblUsername.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblUsername.AutoSize = true;
-            lblUsername.Location = new Point(131, 31);
+            lblUsername.Location = new Point(131, 80);
             lblUsername.Name = "lblUsername";
             lblUsername.Size = new Size(75, 20);
             lblUsername.TabIndex = 3;
@@ -418,7 +429,7 @@
             // 
             lblPassword.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             lblPassword.AutoSize = true;
-            lblPassword.Location = new Point(136, 84);
+            lblPassword.Location = new Point(136, 133);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(70, 20);
             lblPassword.TabIndex = 4;
@@ -427,9 +438,9 @@
             // tBUsername
             // 
             tBUsername.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            tBUsername.Location = new Point(136, 54);
+            tBUsername.Location = new Point(136, 103);
             tBUsername.Name = "tBUsername";
-            tBUsername.Size = new Size(366, 27);
+            tBUsername.Size = new Size(667, 27);
             tBUsername.TabIndex = 1;
             // 
             // tPVermittlung
@@ -437,7 +448,7 @@
             tPVermittlung.Controls.Add(tableLayoutPanel4);
             tPVermittlung.Location = new Point(4, 32);
             tPVermittlung.Name = "tPVermittlung";
-            tPVermittlung.Size = new Size(848, 374);
+            tPVermittlung.Size = new Size(1149, 471);
             tPVermittlung.TabIndex = 3;
             tPVermittlung.Text = "Vermittlung";
             tPVermittlung.UseVisualStyleBackColor = true;
@@ -454,15 +465,15 @@
             tableLayoutPanel4.RowCount = 2;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 89.03743F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 10.96257F));
-            tableLayoutPanel4.Size = new Size(848, 374);
+            tableLayoutPanel4.Size = new Size(1149, 471);
             tableLayoutPanel4.TabIndex = 0;
             // 
             // btnAbmelden2
             // 
             btnAbmelden2.Dock = DockStyle.Fill;
-            btnAbmelden2.Location = new Point(748, 336);
+            btnAbmelden2.Location = new Point(1013, 422);
             btnAbmelden2.Name = "btnAbmelden2";
-            btnAbmelden2.Size = new Size(97, 35);
+            btnAbmelden2.Size = new Size(133, 46);
             btnAbmelden2.TabIndex = 1;
             btnAbmelden2.Text = "Abmelden";
             btnAbmelden2.UseVisualStyleBackColor = true;
@@ -473,7 +484,7 @@
             tPStatistik.Controls.Add(tableLayoutPanel3);
             tPStatistik.Location = new Point(4, 32);
             tPStatistik.Name = "tPStatistik";
-            tPStatistik.Size = new Size(848, 374);
+            tPStatistik.Size = new Size(1149, 471);
             tPStatistik.TabIndex = 4;
             tPStatistik.Text = "Statistik";
             tPStatistik.UseVisualStyleBackColor = true;
@@ -492,15 +503,15 @@
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 90.10695F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 9.893048F));
-            tableLayoutPanel3.Size = new Size(848, 374);
+            tableLayoutPanel3.Size = new Size(1149, 471);
             tableLayoutPanel3.TabIndex = 0;
             // 
             // btnAbmelden
             // 
             btnAbmelden.Dock = DockStyle.Fill;
-            btnAbmelden.Location = new Point(735, 340);
+            btnAbmelden.Location = new Point(994, 427);
             btnAbmelden.Name = "btnAbmelden";
-            btnAbmelden.Size = new Size(110, 31);
+            btnAbmelden.Size = new Size(152, 41);
             btnAbmelden.TabIndex = 0;
             btnAbmelden.Text = "Abmelden";
             btnAbmelden.UseVisualStyleBackColor = true;
@@ -521,7 +532,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             cStatistik.Series.Add(series1);
-            cStatistik.Size = new Size(726, 331);
+            cStatistik.Size = new Size(985, 418);
             cStatistik.TabIndex = 1;
             // 
             // panel3
@@ -531,9 +542,9 @@
             panel3.Controls.Add(cBJahr);
             panel3.Controls.Add(lblJahr);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(735, 3);
+            panel3.Location = new Point(994, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(110, 331);
+            panel3.Size = new Size(152, 418);
             panel3.TabIndex = 2;
             // 
             // btnVerloren
@@ -541,7 +552,7 @@
             btnVerloren.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnVerloren.Location = new Point(3, 103);
             btnVerloren.Name = "btnVerloren";
-            btnVerloren.Size = new Size(104, 29);
+            btnVerloren.Size = new Size(146, 29);
             btnVerloren.TabIndex = 3;
             btnVerloren.Text = "Verloren";
             btnVerloren.UseVisualStyleBackColor = true;
@@ -551,7 +562,7 @@
             btnGefunden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnGefunden.Location = new Point(3, 68);
             btnGefunden.Name = "btnGefunden";
-            btnGefunden.Size = new Size(104, 29);
+            btnGefunden.Size = new Size(146, 29);
             btnGefunden.TabIndex = 2;
             btnGefunden.Text = "Gefunden";
             btnGefunden.UseVisualStyleBackColor = true;
@@ -563,7 +574,7 @@
             cBJahr.FormattingEnabled = true;
             cBJahr.Location = new Point(3, 23);
             cBJahr.Name = "cBJahr";
-            cBJahr.Size = new Size(104, 28);
+            cBJahr.Size = new Size(146, 28);
             cBJahr.TabIndex = 1;
             // 
             // lblJahr
@@ -578,6 +589,16 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(label10);
+            tabPage1.Controls.Add(label9);
+            tabPage1.Controls.Add(label8);
+            tabPage1.Controls.Add(label7);
+            tabPage1.Controls.Add(label6);
+            tabPage1.Controls.Add(label5);
+            tabPage1.Controls.Add(textBox8);
+            tabPage1.Controls.Add(textBox7);
+            tabPage1.Controls.Add(textBox6);
+            tabPage1.Controls.Add(textBox5);
             tabPage1.Controls.Add(button2);
             tabPage1.Controls.Add(label4);
             tabPage1.Controls.Add(label3);
@@ -590,26 +611,108 @@
             tabPage1.Controls.Add(comboBox1);
             tabPage1.Location = new Point(4, 32);
             tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(848, 374);
+            tabPage1.Size = new Size(1149, 471);
             tabPage1.TabIndex = 5;
-            tabPage1.Text = "Fundgegenstand Aufgeben";
+            tabPage1.Text = "Fundgegenstand Abgeben";
             tabPage1.UseVisualStyleBackColor = true;
             tabPage1.Click += tabPage1_Click;
             // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(410, 166);
+            label10.Name = "label10";
+            label10.Size = new Size(235, 20);
+            label10.TabIndex = 19;
+            label10.Text = "Anonym oder mit Namen melden!";
+            label10.Click += label10_Click;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(860, 74);
+            label9.Name = "label9";
+            label9.Size = new Size(0, 20);
+            label9.TabIndex = 18;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(985, 207);
+            label8.Name = "label8";
+            label8.Size = new Size(52, 20);
+            label8.TabIndex = 17;
+            label8.Text = "E-Mail";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(844, 207);
+            label7.Name = "label7";
+            label7.Size = new Size(113, 20);
+            label7.TabIndex = 16;
+            label7.Text = "Telefonnummer";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(703, 207);
+            label6.Name = "label6";
+            label6.Size = new Size(80, 20);
+            label6.TabIndex = 15;
+            label6.Text = "Nachname";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(584, 207);
+            label5.Name = "label5";
+            label5.Size = new Size(68, 20);
+            label5.TabIndex = 14;
+            label5.Text = "Vorname";
+            // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(561, 249);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(125, 27);
+            textBox8.TabIndex = 13;
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(832, 249);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(125, 27);
+            textBox7.TabIndex = 12;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(963, 249);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(125, 27);
+            textBox6.TabIndex = 11;
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(692, 249);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(125, 27);
+            textBox5.TabIndex = 10;
+            // 
             // button2
             // 
-            button2.Location = new Point(329, 319);
+            button2.Location = new Point(347, 397);
             button2.Name = "button2";
-            button2.Size = new Size(195, 29);
+            button2.Size = new Size(376, 29);
             button2.TabIndex = 9;
-            button2.Text = "fund_melden";
+            button2.Text = "Fund Abgeben";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(63, 146);
+            label4.Location = new Point(25, 146);
             label4.Name = "label4";
             label4.Size = new Size(84, 20);
             label4.TabIndex = 8;
@@ -618,7 +721,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(453, 32);
+            label3.Location = new Point(453, 43);
             label3.Name = "label3";
             label3.Size = new Size(60, 20);
             label3.TabIndex = 7;
@@ -627,7 +730,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(268, 32);
+            label2.Location = new Point(239, 43);
             label2.Name = "label2";
             label2.Size = new Size(98, 20);
             label2.TabIndex = 6;
@@ -636,7 +739,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(63, 32);
+            label1.Location = new Point(25, 43);
             label1.Name = "label1";
             label1.Size = new Size(74, 20);
             label1.TabIndex = 5;
@@ -644,7 +747,7 @@
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(63, 179);
+            dateTimePicker1.Location = new Point(25, 187);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(250, 27);
             dateTimePicker1.TabIndex = 4;
@@ -652,24 +755,24 @@
             // checkBox2
             // 
             checkBox2.AutoSize = true;
-            checkBox2.Location = new Point(641, 67);
+            checkBox2.Location = new Point(410, 249);
             checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(86, 24);
+            checkBox2.Size = new Size(90, 24);
             checkBox2.TabIndex = 3;
-            checkBox2.Text = "Anonym";
+            checkBox2.Text = "Anonym ";
             checkBox2.UseVisualStyleBackColor = true;
             // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(453, 67);
+            comboBox2.Location = new Point(453, 76);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(151, 28);
             comboBox2.TabIndex = 2;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(268, 68);
+            textBox4.Location = new Point(239, 77);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(125, 27);
             textBox4.TabIndex = 1;
@@ -677,16 +780,23 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(63, 67);
+            comboBox1.Location = new Point(25, 77);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 0;
+            // 
+            // mySqlCommand1
+            // 
+            mySqlCommand1.CommandTimeout = 0;
+            mySqlCommand1.Connection = null;
+            mySqlCommand1.Transaction = null;
+            mySqlCommand1.UpdatedRowSource = System.Data.UpdateRowSource.None;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(901, 450);
+            ClientSize = new Size(1216, 555);
             Controls.Add(tableLayoutPanel1);
             Name = "Form1";
             Text = "Form1";
@@ -772,5 +882,16 @@
         private TextBox textBox4;
         private ComboBox comboBox1;
         private Button button2;
+        private MySqlConnector.MySqlCommand mySqlCommand1;
+        private Label label10;
+        private Label label9;
+        private Label label8;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private TextBox textBox8;
+        private TextBox textBox7;
+        private TextBox textBox6;
+        private TextBox textBox5;
     }
 }
