@@ -320,7 +320,7 @@
             btnVerlustmelden.TabIndex = 11;
             btnVerlustmelden.Text = "Verlust melden";
             btnVerlustmelden.UseVisualStyleBackColor = true;
-            btnVerlustmelden.Click += button1_Click;
+            btnVerlustmelden.Click += btnVerlustmelden_Click;
             // 
             // dTPDatum
             // 
@@ -743,7 +743,7 @@
             btnFundabgeben.TabIndex = 9;
             btnFundabgeben.Text = "Fund Abgeben";
             btnFundabgeben.UseVisualStyleBackColor = true;
-            btnFundabgeben.Click += button2_Click;
+            btnFundabgeben.Click += btnFundabgeben_Click;
             // 
             // label4
             // 

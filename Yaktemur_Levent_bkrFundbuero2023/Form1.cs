@@ -32,7 +32,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             List<string> listData = dbase.QueryToList("SELECT Bezeichnung FROM kategorie;");
             cBKatAuswahl.DataSource = listData;
 
-            // fill the comboBox3 with fundort data
+            // fill the Verlustort with fundort data
             listData = dbase.QueryToList("SELECT Bezeichnung FROM fundort;");
             cBVerlustort.DataSource = listData;
 
@@ -42,6 +42,9 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
             listData = dbase.QueryToList("SELECT Bezeichnung FROM fundort;");
             cBFundort.DataSource = listData;
+
+
+
         }
 
         private void Fill_Daten()
@@ -165,7 +168,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
         {
 
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void btnVerlustmelden_Click(object sender, EventArgs e)
         {
             string beschreibung = tBBeschreibung.Text;
             string fundort = cBVerlustort.SelectedItem.ToString();
@@ -174,7 +177,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             string email = tBEmail.Text;
             string eigentumNr = cHBAnonym.Checked ? "100" : "NULL";
             string fundortID = dbase.QueryToCell($"SELECT FundortID FROM fundort WHERE Bezeichnung = '{fundort}'");
-
+            //eintrag verlustmeldung
             dbase.QueryToList($"INSERT INTO verlustmeldung (Beschreibung, VerlustOrt, Verlustdatum, Telefonnummer, EMail, EigentumNr) " +
             $"VALUES ('{beschreibung}', '{fundortID}', '{verlustdatum:yyyy-MM-dd}', '{telefonnummer}', '{email}', {eigentumNr});");
 
@@ -211,10 +214,10 @@ namespace Yaktemur_Levent_bkrFundbuero2023
         {
             List<String[]> liste = new List<String[]>();
             liste = dbase.QueryToArrayList($"SELECT count(*),Year(Funddatum) from fundgegenstand where EigentumNr is null and Year(Funddatum) = {cBJahr.Text} GROUP BY YEAR(Funddatum);");
-
+            //jahr identifizieren
             string[] jahr = cBJahr.Text.Split('_');
             string first = jahr[0];
-
+            //name seires
             var s = cStatistik.Series.Add($"Jahr!Gefunden-{cBJahr.Text}");
             //s.ChartType = SeriesChartType.Spline;
             for (int i = 0; i < liste.Count; i++)
@@ -225,7 +228,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
         }
 
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnFundabgeben_Click(object sender, EventArgs e)
         {
             string kategorie = cBKategorie.SelectedItem.ToString();
             string beschreibung = tBBeschreibung2.Text;
