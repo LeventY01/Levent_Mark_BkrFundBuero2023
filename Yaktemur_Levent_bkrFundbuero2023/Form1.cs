@@ -1,6 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
-
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Yaktemur_Levent_bkrFundbuero2023
 {
@@ -38,7 +38,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
             // fill the comboBox3 with fundort data
             listData = dbase.QueryToList("SELECT Bezeichnung FROM fundort;");
-            comboBox3.DataSource = listData;
+            cBVerlustort.DataSource = listData;
 
             listData = dbase.QueryToList("SELECT YEAR(Funddatum) AS Jahr, COUNT(*) AS Anzahl_gefundene_Gegenstände FROM fundgegenstand GROUP BY YEAR(Funddatum);");
             cBJahr.DataSource = listData;
@@ -175,7 +175,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
         private void button1_Click(object sender, EventArgs e)
         {
             string beschreibung = textBox3.Text;
-            string fundort = comboBox3.SelectedItem.ToString();
+            string fundort = cBVerlustort.SelectedItem.ToString();
             DateTime verlustdatum = dTPDatum.Value;
             string telefonnummer = textBox2.Text;
             string email = textBox1.Text;
@@ -187,7 +187,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
             MessageBox.Show("Erfolgreich Aufgegeben!");
             textBox3.Clear();
-            comboBox3.SelectedIndex = -1;
+            cBVerlustort.SelectedIndex = -1;
             dTPDatum.Value = DateTime.Now;
             textBox2.Clear();
             textBox1.Clear();
@@ -200,23 +200,37 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
         private void btnGefunden_Click(object sender, EventArgs e)
         {
+            cStatistik.Series.Clear();
             List<String[]> liste = new List<String[]>();
-            liste = dbase.QueryToArrayList($"SELECT {cBJahr.Text} AS Jahr AS Anzahl_gefundene_Gegenstände FROM fundgegenstand;");
+            liste = dbase.QueryToArrayList($"SELECT count(*),YEAR(Funddatum) from fundgegenstand WHERE YEAR(Funddatum) = {cBJahr.Text} GROUP BY YEAR(Funddatum);");
 
             string[] jahr = cBJahr.Text.Split('_');
             string first = jahr[0];
 
-            var s = cStatistik.Series.Add($"Jahr-{cBJahr.Text}");
+            var s = cStatistik.Series.Add($"JahrGefunden-{cBJahr.Text}");
+            //s.ChartType = SeriesChartType.Spline;
             for (int i = 0; i < liste.Count; i++)
             {
                 s.Points.AddXY(liste[i][0], liste[i][1]);
             }
         }
-
-        private void tabPage1_Click(object sender, EventArgs e)
+        private void btnVerloren_Click(object sender, EventArgs e)
         {
+            List<String[]> liste = new List<String[]>();
+            liste = dbase.QueryToArrayList($"SELECT count(*),Year(Funddatum) from fundgegenstand where EigentumNr is null and Year(Funddatum) = {cBJahr.Text} GROUP BY YEAR(Funddatum);");
 
+            string[] jahr = cBJahr.Text.Split('_');
+            string first = jahr[0];
+
+            var s = cStatistik.Series.Add($"Jahr!Gefunden-{cBJahr.Text}");
+            //s.ChartType = SeriesChartType.Spline;
+            for (int i = 0; i < liste.Count; i++)
+            {
+
+                s.Points.AddXY(liste[i][0], liste[i][1]);
+            }
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -274,5 +288,12 @@ namespace Yaktemur_Levent_bkrFundbuero2023
         {
 
         }
+
+        private void cBJahr_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

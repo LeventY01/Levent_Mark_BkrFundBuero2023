@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             tableLayoutPanel1 = new TableLayoutPanel();
             tabControl1 = new TabControl();
             tPFundgegenstand = new TabPage();
@@ -53,7 +53,7 @@
             lblKategorie2 = new Label();
             lblDatum = new Label();
             lblFundort = new Label();
-            comboBox3 = new ComboBox();
+            cBVerlustort = new ComboBox();
             tPLogin = new TabPage();
             panel2 = new Panel();
             tBPassword = new TextBox();
@@ -249,7 +249,7 @@
             tPVerlustmeldung.Controls.Add(lblKategorie2);
             tPVerlustmeldung.Controls.Add(lblDatum);
             tPVerlustmeldung.Controls.Add(lblFundort);
-            tPVerlustmeldung.Controls.Add(comboBox3);
+            tPVerlustmeldung.Controls.Add(cBVerlustort);
             tPVerlustmeldung.Location = new Point(4, 32);
             tPVerlustmeldung.Name = "tPVerlustmeldung";
             tPVerlustmeldung.Padding = new Padding(3);
@@ -366,13 +366,13 @@
             lblFundort.TabIndex = 3;
             lblFundort.Text = "Verlustort";
             // 
-            // comboBox3
+            // cBVerlustort
             // 
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(242, 67);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(151, 28);
-            comboBox3.TabIndex = 1;
+            cBVerlustort.FormattingEnabled = true;
+            cBVerlustort.Location = new Point(242, 67);
+            cBVerlustort.Name = "cBVerlustort";
+            cBVerlustort.Size = new Size(151, 28);
+            cBVerlustort.TabIndex = 1;
             // 
             // tPLogin
             // 
@@ -545,19 +545,19 @@
             // 
             // cStatistik
             // 
-            chartArea1.Name = "ChartArea1";
-            cStatistik.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            cStatistik.ChartAreas.Add(chartArea2);
             cStatistik.Dock = DockStyle.Fill;
-            legend1.Name = "Legend1";
-            cStatistik.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            cStatistik.Legends.Add(legend2);
             cStatistik.Location = new Point(3, 3);
             cStatistik.Name = "cStatistik";
             cStatistik.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            cStatistik.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            cStatistik.Series.Add(series2);
             cStatistik.Size = new Size(1408, 534);
             cStatistik.TabIndex = 1;
             // 
@@ -582,6 +582,7 @@
             btnVerloren.TabIndex = 3;
             btnVerloren.Text = "Verloren";
             btnVerloren.UseVisualStyleBackColor = true;
+            btnVerloren.Click += btnVerloren_Click;
             // 
             // btnGefunden
             // 
@@ -602,6 +603,7 @@
             cBJahr.Name = "cBJahr";
             cBJahr.Size = new Size(213, 28);
             cBJahr.TabIndex = 1;
+            cBJahr.SelectedIndexChanged += cBJahr_SelectedIndexChanged;
             // 
             // lblJahr
             // 
@@ -641,7 +643,6 @@
             tabPage1.TabIndex = 5;
             tabPage1.Text = "Fundgegenstand Abgeben";
             tabPage1.UseVisualStyleBackColor = true;
-            tabPage1.Click += tabPage1_Click;
             // 
             // label10
             // 
@@ -880,7 +881,7 @@
         private Label lblKategorie2;
         private Label lblDatum;
         private Label lblFundort;
-        private ComboBox comboBox3;
+        private ComboBox cBVerlustort;
         private TabPage tPLogin;
         private Label lblPassword;
         private Label lblUsername;
@@ -905,8 +906,6 @@
         private Panel panel3;
         private ComboBox cBJahr;
         private Label lblJahr;
-        private Button btnVerloren;
-        private Button btnGefunden;
         private TabPage tabPage1;
         private Label label4;
         private Label label3;
@@ -934,5 +933,7 @@
         private DataGridView dataGridView2;
         private Label label11;
         private Label label12;
+        private Button btnVerloren;
+        private Button btnGefunden;
     }
 }
