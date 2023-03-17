@@ -26,13 +26,15 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             dbase = new Dbase(servername, database, uid, passwd);
 
             Fill_Combobox();
-
         }
-
         private void Fill_Combobox()
         {
             List<string> listData = dbase.QueryToList("SELECT Bezeichnung FROM kategorie;");
             cBKatAuswahl.DataSource = listData;
+
+            listData = dbase.QueryToList("SELECT Bezeichnung FROM kategorie;");
+            cBKategorie.DataSource = listData;
+
 
             // fill the comboBox3 with fundort data
             listData = dbase.QueryToList("SELECT Bezeichnung FROM fundort;");
@@ -116,8 +118,6 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
         }
 
-
-
         private void cBKatAuswahl_SelectedIndexChanged(object sender, EventArgs e)
         {
             Fill_Daten();
@@ -181,6 +181,14 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             string email = tBEmail.Text;
             string eigentumNr = "NULL";
             string fundortID = dbase.QueryToCell($"SELECT FundortID FROM fundort WHERE Bezeichnung = '{fundort}'");
+
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+                return;
+            }
+
+
             //eintrag verlustmeldung
             dbase.QueryToList($"INSERT INTO verlustmeldung (Beschreibung, VerlustOrt, Verlustdatum, Telefonnummer, EMail, EigentumNr) " +
             $"VALUES ('{beschreibung}', '{fundortID}', '{verlustdatum:yyyy-MM-dd}', '{telefonnummer}', '{email}', {eigentumNr});");
@@ -253,6 +261,13 @@ namespace Yaktemur_Levent_bkrFundbuero2023
                 string telefonnummer = tBTelefon2.Text;
                 string email = tBEmail2.Text;
 
+
+                if (!IsValidEmail(email))
+                {
+                    MessageBox.Show("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+                    return;
+                }
+
                 dbase.QueryToList($"INSERT INTO finder (Vorname, Nachname, Telefonnummer, EMail) " +
                     $"VALUES ('{vorname}', '{nachname}', '{telefonnummer}', '{email}');");
 
@@ -279,15 +294,11 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             tBTelefon2.Clear();
             tBEmail2.Clear();
 
-
             Fill_Daten();
         }
-
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
         }
-
         private void dGVVerluste_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             // Check if the double-clicked cell is in the "Eigentumer" column
@@ -324,6 +335,13 @@ namespace Yaktemur_Levent_bkrFundbuero2023
                 string telefonnummer = textBox3.Text;
                 string email = textBox4.Text;
 
+
+                if (!IsValidEmail(email))
+                {
+                    MessageBox.Show("Bitte geben Sie eine gültige E-Mail-Adresse ein.");
+                    return;
+                }
+
                 // Insert the new Eigentümer record into the database
                 dbase.QueryToList($"INSERT INTO eigentuemer (Vorname, Nachname, Telefonnummer, EMail) " +
                                   $"VALUES ('{vorname}', '{nachname}', '{telefonnummer}', '{email}');");
@@ -344,7 +362,18 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             textBox4.Clear();
             Fill_Daten();
         }
-
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
 
 

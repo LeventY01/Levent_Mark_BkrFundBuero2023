@@ -43,8 +43,8 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             {
                 MessageBox.Show(ex.Message, "Datenbank Verbindungsfehler");
             }
-        
-    }
+
+        }
         public DataTable TableToDataTable(string table)
         {
             DataTable dtData = new DataTable();
@@ -84,9 +84,22 @@ namespace Yaktemur_Levent_bkrFundbuero2023
                 return listData;
             }
             catch (MySqlException ex)
-            {                
+            {
                 MessageBox.Show(ex.Message + $"\n\n{query}", "Datenbank Query-Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return new List<string>();
+            }
+        }
+
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
             }
         }
         public List<string[]> QueryToArrayList(string _query)
@@ -112,11 +125,12 @@ namespace Yaktemur_Levent_bkrFundbuero2023
                 return listData;
             }
             catch (MySqlException ex)
-            {                
+            {
                 MessageBox.Show(ex.Message + $"\n\n{_query}", "Datenbank Query-Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return new List<string[]>();
             }
         }
+
 
         public string QueryToCell(string query)
         {
@@ -132,7 +146,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
                 return result;
             }
             catch (MySqlException ex)
-            {                
+            {
                 MessageBox.Show(ex.Message + $"\n\n{query}", "Datenbank Query-Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return string.Empty;
             }
@@ -151,10 +165,13 @@ namespace Yaktemur_Levent_bkrFundbuero2023
                 return hasRows;
             }
             catch (MySqlException ex)
-            {               
+            {
                 MessageBox.Show(ex.Message + $"\n\n{query}", "Datenbank Query-Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
+           
+            }
+        
     }
-}
+
