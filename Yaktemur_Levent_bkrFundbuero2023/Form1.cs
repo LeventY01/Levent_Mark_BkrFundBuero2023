@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
+using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Yaktemur_Levent_bkrFundbuero2023
@@ -15,8 +16,9 @@ namespace Yaktemur_Levent_bkrFundbuero2023
         public Form1()
         {
             InitializeComponent();
-            tabControl1.TabPages.Remove(tPVermittlung);
-            tabControl1.TabPages.Remove(tPStatistik);
+            EigentuemerTab.TabPages.Remove(tPVermittlung);
+            EigentuemerTab.TabPages.Remove(tPStatistik);
+            EigentuemerTab.TabPages.Remove(tPEigentuemer);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -105,10 +107,11 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             dGVFund.Columns[4].Name = "EigentumNr";
             dGVFund.Columns[5].Name = "Funddatum";
             listData = dbase.QueryToArrayList($@"
-            SELECT kat.Bezeichnung, fg.Beschreibung, fo.Bezeichnung as Fundort, fg.FinderNr, fg.EigentumNr, DATE_FORMAT(fg.Funddatum, '%d.%m.%Y') as Funddatum 
+           SELECT kat.Bezeichnung, fg.Beschreibung, fo.Bezeichnung as Fundort, fg.FinderNr, fg.EigentumNr, DATE_FORMAT(fg.Funddatum, '%d.%m.%Y') as Funddatum 
             FROM fundgegenstand fg
             JOIN fundort fo ON fg.FundortID = fo.FundortID
-            JOIN kategorie kat ON fg.KatID = kat.KatID;");
+            JOIN kategorie kat ON fg.KatID = kat.KatID
+            WHERE fg.EigentumNr IS NULL;");
 
             foreach (string[] item in listData)
             {
@@ -128,9 +131,11 @@ namespace Yaktemur_Levent_bkrFundbuero2023
         {
             if (dbase.QueryToBool($"SELECT * FROM login WHERE User = '{tBUsername.Text}' AND Pass = '{SHA256(tBPassword.Text)}';"))
             {
-                tabControl1.TabPages.Add(tPVermittlung);
-                tabControl1.TabPages.Add(tPStatistik);
-                tabControl1.TabPages.Remove(tPLogin);
+                EigentuemerTab.TabPages.Add(tPVermittlung);
+                EigentuemerTab.TabPages.Add(tPStatistik);
+                EigentuemerTab.TabPages.Add(tPEigentuemer);
+                EigentuemerTab.TabPages.Remove(tPLogin);
+
                 tBUsername.Clear();
                 tBPassword.Clear();
             }
@@ -148,18 +153,20 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
         private void btnAbmelden_Click(object sender, EventArgs e)
         {
-            tabControl1.TabPages.Remove(tPVermittlung);
-            tabControl1.TabPages.Remove(tPStatistik);
-            tabControl1.TabPages.Add(tPLogin);
+            EigentuemerTab.TabPages.Remove(tPVermittlung);
+            EigentuemerTab.TabPages.Remove(tPStatistik);
+            EigentuemerTab.TabPages.Remove(tPEigentuemer);
+            EigentuemerTab.TabPages.Add(tPLogin);
         }
 
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
             if (dbase.QueryToBool($"SELECT * FROM login WHERE User = '{tBUsername.Text}' AND Pass = '{SHA256(tBPassword.Text)}';"))
             {
-                tabControl1.TabPages.Add(tPVermittlung);
-                tabControl1.TabPages.Add(tPStatistik);
-                tabControl1.TabPages.Remove(tPLogin);
+                EigentuemerTab.TabPages.Add(tPVermittlung);
+                EigentuemerTab.TabPages.Add(tPStatistik);
+                EigentuemerTab.TabPages.Add(tPEigentuemer);
+                EigentuemerTab.TabPages.Remove(tPLogin);
                 tBUsername.Clear();
                 tBPassword.Clear();
             }
@@ -176,7 +183,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             DateTime verlustdatum = dTPDatum.Value;
             string telefonnummer = tBTelefon.Text;
             string email = tBEmail.Text;
-            string eigentumNr = cHBAnonym.Checked ? "100" : "NULL";
+            string eigentumNr = "NULL";
             string fundortID = dbase.QueryToCell($"SELECT FundortID FROM fundort WHERE Bezeichnung = '{fundort}'");
 
             dbase.QueryToList($"INSERT INTO verlustmeldung (Beschreibung, VerlustOrt, Verlustdatum, Telefonnummer, EMail, EigentumNr) " +
@@ -280,23 +287,71 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             Fill_Daten();
         }
 
-
-
-        private void label10_Click(object sender, EventArgs e)
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        private void dGVVerluste_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Check if the double-clicked cell is in the "Eigentumer" column
+            if (dGVVerluste.Columns[e.ColumnIndex].Name == "Eigentumer")
+            {
+                // Get the VerlustNr from the selected row
+                string verlustNr = dGVVerluste.Rows[e.RowIndex].Cells["VerlustNr"].Value.ToString();
 
+                // Pass the VerlustNr to the tPEigentuemer tab page
+                tPEigentuemer.Tag = verlustNr;
+
+                // Switch to the "tPEigentuemer" tab page
+                EigentuemerTab.SelectedTab = tPEigentuemer;
+            }
         }
 
-        private void cBJahr_SelectedIndexChanged(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
+            string verlustNr = tPEigentuemer.Tag.ToString();
+            // Get the EigentumNr for the new Eigentümer record
+            string eigentumNr = dbase.QueryToCell($"SELECT EigentumNr FROM verlustmeldung WHERE VerlustNr = '{verlustNr}'");
 
+            // Check if the CheckBox1 is selected
+            if (checkBox1.Checked)
+            {
+                // Insert EigentumNr 100 into the verlustmeldung table
+                dbase.QueryToList($"UPDATE verlustmeldung SET EigentumNr = '100' WHERE VerlustNr = '{verlustNr}'");
+            }
+            else
+            {
+                // Get the input values for the new Eigentümer record
+                string vorname = textBox1.Text;
+                string nachname = textBox2.Text;
+                string telefonnummer = textBox3.Text;
+                string email = textBox4.Text;
+
+                // Insert the new Eigentümer record into the database
+                dbase.QueryToList($"INSERT INTO eigentuemer (Vorname, Nachname, Telefonnummer, EMail) " +
+                                  $"VALUES ('{vorname}', '{nachname}', '{telefonnummer}', '{email}');");
+
+                // Get the new EigentumNr for the inserted record
+                string newEigentumNr = dbase.QueryToCell($"SELECT MAX(EigentumNr) FROM eigentuemer").ToString();
+
+                // Update the EigentumNr in the verlustmeldung table
+                dbase.QueryToList($"UPDATE verlustmeldung SET EigentumNr = '{newEigentumNr}' WHERE VerlustNr = '{verlustNr}'");
+            }
+
+            MessageBox.Show("Erfolgreich Hinzugefügt!");
+
+            // Clear the input fields
+            textBox1.Clear();
+            textBox2.Clear();
+            textBox3.Clear();
+            textBox4.Clear();
+            Fill_Daten();
         }
+
+
 
 
     }
 }
+

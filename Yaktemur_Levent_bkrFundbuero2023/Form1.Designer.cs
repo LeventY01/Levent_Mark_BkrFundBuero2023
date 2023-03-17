@@ -32,7 +32,7 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             tableLayoutPanel1 = new TableLayoutPanel();
-            tabControl1 = new TabControl();
+            EigentuemerTab = new TabControl();
             tPFundgegenstand = new TabPage();
             tableLayoutPanel2 = new TableLayoutPanel();
             dGVFundgegenstand = new DataGridView();
@@ -41,7 +41,6 @@
             lblKategorie1 = new Label();
             lblCount = new Label();
             tPVerlustmeldung = new TabPage();
-            cHBAnonym = new CheckBox();
             tBBeschreibung = new TextBox();
             tBTelefon = new TextBox();
             tBEmail = new TextBox();
@@ -49,7 +48,6 @@
             lblEmail = new Label();
             btnVerlustmelden = new Button();
             dTPDatum = new DateTimePicker();
-            lblFundgegenstand = new Label();
             lblKategorie2 = new Label();
             lblDatum = new Label();
             lblFundort = new Label();
@@ -62,6 +60,7 @@
             lblPassword = new Label();
             tBUsername = new TextBox();
             tPVermittlung = new TabPage();
+            label19 = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             dGVVerluste = new DataGridView();
             dGVFund = new DataGridView();
@@ -76,7 +75,7 @@
             btnGefunden = new Button();
             cBJahr = new ComboBox();
             lblJahr = new Label();
-            tabPage1 = new TabPage();
+            tPFundAbgabe = new TabPage();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
@@ -97,9 +96,22 @@
             cBFundort = new ComboBox();
             tBBeschreibung2 = new TextBox();
             cBKategorie = new ComboBox();
+            tPEigentuemer = new TabPage();
+            label18 = new Label();
+            checkBox1 = new CheckBox();
+            button1 = new Button();
+            label17 = new Label();
+            label16 = new Label();
+            label15 = new Label();
+            label14 = new Label();
+            label13 = new Label();
+            textBox4 = new TextBox();
+            textBox3 = new TextBox();
+            textBox2 = new TextBox();
+            textBox1 = new TextBox();
             mySqlCommand1 = new MySqlConnector.MySqlCommand();
             tableLayoutPanel1.SuspendLayout();
-            tabControl1.SuspendLayout();
+            EigentuemerTab.SuspendLayout();
             tPFundgegenstand.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dGVFundgegenstand).BeginInit();
@@ -115,7 +127,8 @@
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cStatistik).BeginInit();
             panel3.SuspendLayout();
-            tabPage1.SuspendLayout();
+            tPFundAbgabe.SuspendLayout();
+            tPEigentuemer.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -126,7 +139,7 @@
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Controls.Add(tabControl1, 0, 0);
+            tableLayoutPanel1.Controls.Add(EigentuemerTab, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -137,22 +150,23 @@
             tableLayoutPanel1.Size = new Size(1728, 696);
             tableLayoutPanel1.TabIndex = 0;
             // 
-            // tabControl1
+            // EigentuemerTab
             // 
-            tabControl1.Appearance = TabAppearance.Buttons;
-            tabControl1.Controls.Add(tPFundgegenstand);
-            tabControl1.Controls.Add(tPVerlustmeldung);
-            tabControl1.Controls.Add(tPLogin);
-            tabControl1.Controls.Add(tPVermittlung);
-            tabControl1.Controls.Add(tPStatistik);
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(3, 3);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1647, 636);
-            tabControl1.SizeMode = TabSizeMode.FillToRight;
-            tabControl1.TabIndex = 0;
+            EigentuemerTab.Appearance = TabAppearance.Buttons;
+            EigentuemerTab.Controls.Add(tPFundgegenstand);
+            EigentuemerTab.Controls.Add(tPVerlustmeldung);
+            EigentuemerTab.Controls.Add(tPLogin);
+            EigentuemerTab.Controls.Add(tPVermittlung);
+            EigentuemerTab.Controls.Add(tPStatistik);
+            EigentuemerTab.Controls.Add(tPFundAbgabe);
+            EigentuemerTab.Controls.Add(tPEigentuemer);
+            EigentuemerTab.Dock = DockStyle.Fill;
+            EigentuemerTab.Location = new Point(3, 3);
+            EigentuemerTab.Name = "EigentuemerTab";
+            EigentuemerTab.SelectedIndex = 0;
+            EigentuemerTab.Size = new Size(1647, 636);
+            EigentuemerTab.SizeMode = TabSizeMode.FillToRight;
+            EigentuemerTab.TabIndex = 0;
             // 
             // tPFundgegenstand
             // 
@@ -203,6 +217,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(312, 534);
             panel1.TabIndex = 3;
+            panel1.Paint += panel1_Paint;
             // 
             // cBKatAuswahl
             // 
@@ -236,7 +251,6 @@
             // 
             // tPVerlustmeldung
             // 
-            tPVerlustmeldung.Controls.Add(cHBAnonym);
             tPVerlustmeldung.Controls.Add(tBBeschreibung);
             tPVerlustmeldung.Controls.Add(tBTelefon);
             tPVerlustmeldung.Controls.Add(tBEmail);
@@ -244,7 +258,6 @@
             tPVerlustmeldung.Controls.Add(lblEmail);
             tPVerlustmeldung.Controls.Add(btnVerlustmelden);
             tPVerlustmeldung.Controls.Add(dTPDatum);
-            tPVerlustmeldung.Controls.Add(lblFundgegenstand);
             tPVerlustmeldung.Controls.Add(lblKategorie2);
             tPVerlustmeldung.Controls.Add(lblDatum);
             tPVerlustmeldung.Controls.Add(lblFundort);
@@ -256,17 +269,6 @@
             tPVerlustmeldung.TabIndex = 1;
             tPVerlustmeldung.Text = "Verlustmeldung";
             tPVerlustmeldung.UseVisualStyleBackColor = true;
-            // 
-            // cHBAnonym
-            // 
-            cHBAnonym.AutoSize = true;
-            cHBAnonym.Location = new Point(845, 65);
-            cHBAnonym.Name = "cHBAnonym";
-            cHBAnonym.Size = new Size(86, 24);
-            cHBAnonym.TabIndex = 17;
-            cHBAnonym.Text = "Anonym";
-            cHBAnonym.UseVisualStyleBackColor = true;
-            cHBAnonym.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // tBBeschreibung
             // 
@@ -328,15 +330,6 @@
             dTPDatum.Name = "dTPDatum";
             dTPDatum.Size = new Size(250, 27);
             dTPDatum.TabIndex = 10;
-            // 
-            // lblFundgegenstand
-            // 
-            lblFundgegenstand.AutoSize = true;
-            lblFundgegenstand.Location = new Point(845, 27);
-            lblFundgegenstand.Name = "lblFundgegenstand";
-            lblFundgegenstand.Size = new Size(72, 20);
-            lblFundgegenstand.TabIndex = 8;
-            lblFundgegenstand.Text = "Meldung ";
             // 
             // lblKategorie2
             // 
@@ -445,6 +438,7 @@
             // 
             // tPVermittlung
             // 
+            tPVermittlung.Controls.Add(label19);
             tPVermittlung.Controls.Add(tableLayoutPanel4);
             tPVermittlung.Controls.Add(label11);
             tPVermittlung.Controls.Add(label12);
@@ -455,6 +449,15 @@
             tPVermittlung.Text = "Vermittlung";
             tPVermittlung.UseVisualStyleBackColor = true;
             // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(1038, 580);
+            label19.Name = "label19";
+            label19.Size = new Size(473, 20);
+            label19.TabIndex = 5;
+            label19.Text = "Um Eigentumer einzutragen beliebige Eigentumer zelle doppelklicken";
+            // 
             // tableLayoutPanel4
             // 
             tableLayoutPanel4.ColumnCount = 1;
@@ -464,7 +467,7 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel4.Controls.Add(dGVVerluste, 0, 1);
             tableLayoutPanel4.Controls.Add(dGVFund, 0, 0);
-            tableLayoutPanel4.Location = new Point(-7, 34);
+            tableLayoutPanel4.Location = new Point(3, 34);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 2;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
@@ -472,19 +475,19 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new Size(1643, 543);
+            tableLayoutPanel4.Size = new Size(1633, 525);
             tableLayoutPanel4.TabIndex = 4;
             // 
             // dGVVerluste
             // 
             dGVVerluste.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dGVVerluste.Location = new Point(3, 297);
+            dGVVerluste.Location = new Point(3, 279);
             dGVVerluste.Name = "dGVVerluste";
             dGVVerluste.RowHeadersWidth = 51;
             dGVVerluste.RowTemplate.Height = 29;
-            dGVVerluste.Size = new Size(1555, 180);
+            dGVVerluste.Size = new Size(1558, 243);
             dGVVerluste.TabIndex = 0;
-            dGVVerluste.CellValueChanged += dataGridView1_CellValueChanged;
+            dGVVerluste.CellDoubleClick += dGVVerluste_CellDoubleClick;
             // 
             // dGVFund
             // 
@@ -493,13 +496,13 @@
             dGVFund.Name = "dGVFund";
             dGVFund.RowHeadersWidth = 51;
             dGVFund.RowTemplate.Height = 29;
-            dGVFund.Size = new Size(1555, 260);
+            dGVFund.Size = new Size(1555, 270);
             dGVFund.TabIndex = 1;
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(5, 580);
+            label11.Location = new Point(6, 562);
             label11.Name = "label11";
             label11.Size = new Size(128, 20);
             label11.TabIndex = 2;
@@ -612,7 +615,6 @@
             cBJahr.Name = "cBJahr";
             cBJahr.Size = new Size(213, 28);
             cBJahr.TabIndex = 1;
-            cBJahr.SelectedIndexChanged += cBJahr_SelectedIndexChanged;
             // 
             // lblJahr
             // 
@@ -624,34 +626,34 @@
             lblJahr.TabIndex = 0;
             lblJahr.Text = "Jahr:";
             // 
-            // tabPage1
+            // tPFundAbgabe
             // 
-            tabPage1.Controls.Add(label10);
-            tabPage1.Controls.Add(label9);
-            tabPage1.Controls.Add(label8);
-            tabPage1.Controls.Add(label7);
-            tabPage1.Controls.Add(label6);
-            tabPage1.Controls.Add(label5);
-            tabPage1.Controls.Add(tBVorname);
-            tabPage1.Controls.Add(tBTelefon2);
-            tabPage1.Controls.Add(tBEmail2);
-            tabPage1.Controls.Add(tBNachname);
-            tabPage1.Controls.Add(btnFundabgeben);
-            tabPage1.Controls.Add(label4);
-            tabPage1.Controls.Add(label3);
-            tabPage1.Controls.Add(label2);
-            tabPage1.Controls.Add(label1);
-            tabPage1.Controls.Add(dTPFunddatum2);
-            tabPage1.Controls.Add(chBAnonym2);
-            tabPage1.Controls.Add(cBFundort);
-            tabPage1.Controls.Add(tBBeschreibung2);
-            tabPage1.Controls.Add(cBKategorie);
-            tabPage1.Location = new Point(4, 32);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(1639, 600);
-            tabPage1.TabIndex = 5;
-            tabPage1.Text = "Fundgegenstand Abgeben";
-            tabPage1.UseVisualStyleBackColor = true;
+            tPFundAbgabe.Controls.Add(label10);
+            tPFundAbgabe.Controls.Add(label9);
+            tPFundAbgabe.Controls.Add(label8);
+            tPFundAbgabe.Controls.Add(label7);
+            tPFundAbgabe.Controls.Add(label6);
+            tPFundAbgabe.Controls.Add(label5);
+            tPFundAbgabe.Controls.Add(tBVorname);
+            tPFundAbgabe.Controls.Add(tBTelefon2);
+            tPFundAbgabe.Controls.Add(tBEmail2);
+            tPFundAbgabe.Controls.Add(tBNachname);
+            tPFundAbgabe.Controls.Add(btnFundabgeben);
+            tPFundAbgabe.Controls.Add(label4);
+            tPFundAbgabe.Controls.Add(label3);
+            tPFundAbgabe.Controls.Add(label2);
+            tPFundAbgabe.Controls.Add(label1);
+            tPFundAbgabe.Controls.Add(dTPFunddatum2);
+            tPFundAbgabe.Controls.Add(chBAnonym2);
+            tPFundAbgabe.Controls.Add(cBFundort);
+            tPFundAbgabe.Controls.Add(tBBeschreibung2);
+            tPFundAbgabe.Controls.Add(cBKategorie);
+            tPFundAbgabe.Location = new Point(4, 32);
+            tPFundAbgabe.Name = "tPFundAbgabe";
+            tPFundAbgabe.Size = new Size(1639, 600);
+            tPFundAbgabe.TabIndex = 5;
+            tPFundAbgabe.Text = "Fundgegenstand Abgeben";
+            tPFundAbgabe.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -661,7 +663,6 @@
             label10.Size = new Size(235, 20);
             label10.TabIndex = 19;
             label10.Text = "Anonym oder mit Namen melden!";
-            label10.Click += label10_Click;
             // 
             // label9
             // 
@@ -821,6 +822,129 @@
             cBKategorie.Size = new Size(151, 28);
             cBKategorie.TabIndex = 0;
             // 
+            // tPEigentuemer
+            // 
+            tPEigentuemer.Controls.Add(label18);
+            tPEigentuemer.Controls.Add(checkBox1);
+            tPEigentuemer.Controls.Add(button1);
+            tPEigentuemer.Controls.Add(label17);
+            tPEigentuemer.Controls.Add(label16);
+            tPEigentuemer.Controls.Add(label15);
+            tPEigentuemer.Controls.Add(label14);
+            tPEigentuemer.Controls.Add(label13);
+            tPEigentuemer.Controls.Add(textBox4);
+            tPEigentuemer.Controls.Add(textBox3);
+            tPEigentuemer.Controls.Add(textBox2);
+            tPEigentuemer.Controls.Add(textBox1);
+            tPEigentuemer.Location = new Point(4, 32);
+            tPEigentuemer.Name = "tPEigentuemer";
+            tPEigentuemer.Size = new Size(1639, 600);
+            tPEigentuemer.TabIndex = 6;
+            tPEigentuemer.Text = "Eigentuemer";
+            tPEigentuemer.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(444, 17);
+            label18.Name = "label18";
+            label18.Size = new Size(99, 20);
+            label18.TabIndex = 11;
+            label18.Text = "oder Anonym";
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(444, 98);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(86, 24);
+            checkBox1.TabIndex = 10;
+            checkBox1.Text = "Anonym";
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(530, 443);
+            button1.Name = "button1";
+            button1.Size = new Size(392, 29);
+            button1.TabIndex = 9;
+            button1.Text = "Anlegen";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(109, 17);
+            label17.Name = "label17";
+            label17.Size = new Size(168, 20);
+            label17.TabIndex = 8;
+            label17.Text = "Eigentümer Registrieren";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(109, 362);
+            label16.Name = "label16";
+            label16.Size = new Size(52, 20);
+            label16.TabIndex = 7;
+            label16.Text = "E-Mail";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(109, 265);
+            label15.Name = "label15";
+            label15.Size = new Size(58, 20);
+            label15.TabIndex = 6;
+            label15.Text = "Telefon";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(109, 185);
+            label14.Name = "label14";
+            label14.Size = new Size(80, 20);
+            label14.TabIndex = 5;
+            label14.Text = "Nachname";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(109, 98);
+            label13.Name = "label13";
+            label13.Size = new Size(68, 20);
+            label13.TabIndex = 4;
+            label13.Text = "Vorname";
+            // 
+            // textBox4
+            // 
+            textBox4.Location = new Point(214, 362);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(125, 27);
+            textBox4.TabIndex = 3;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(214, 265);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(125, 27);
+            textBox3.TabIndex = 2;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(214, 185);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(125, 27);
+            textBox2.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(214, 91);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(125, 27);
+            textBox1.TabIndex = 0;
+            // 
             // mySqlCommand1
             // 
             mySqlCommand1.CommandTimeout = 0;
@@ -838,7 +962,7 @@
             Text = "Form1";
             Load += Form1_Load;
             tableLayoutPanel1.ResumeLayout(false);
-            tabControl1.ResumeLayout(false);
+            EigentuemerTab.ResumeLayout(false);
             tPFundgegenstand.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
@@ -860,15 +984,17 @@
             ((System.ComponentModel.ISupportInitialize)cStatistik).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
-            tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
+            tPFundAbgabe.ResumeLayout(false);
+            tPFundAbgabe.PerformLayout();
+            tPEigentuemer.ResumeLayout(false);
+            tPEigentuemer.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private TableLayoutPanel tableLayoutPanel1;
-        private TabControl tabControl1;
+        private TabControl EigentuemerTab;
         private TabPage tPFundgegenstand;
         private TableLayoutPanel tableLayoutPanel2;
         private DataGridView dGVFundgegenstand;
@@ -876,7 +1002,6 @@
         private ComboBox cBKatAuswahl;
         private Label lblKategorie1;
         private TabPage tPVerlustmeldung;
-        private Label lblFundgegenstand;
         private Label lblKategorie2;
         private Label lblDatum;
         private Label lblFundort;
@@ -900,12 +1025,11 @@
         private Label lblEmail;
         private Button btnAbmelden;
         private TextBox tBBeschreibung;
-        private CheckBox cHBAnonym;
         private System.Windows.Forms.DataVisualization.Charting.Chart cStatistik;
         private Panel panel3;
         private ComboBox cBJahr;
         private Label lblJahr;
-        private TabPage tabPage1;
+        private TabPage tPFundAbgabe;
         private Label label4;
         private Label label3;
         private Label label2;
@@ -934,5 +1058,19 @@
         private Label label12;
         private Button btnVerloren;
         private Button btnGefunden;
+        private TabPage tPEigentuemer;
+        private Button button1;
+        private Label label17;
+        private Label label16;
+        private Label label15;
+        private Label label14;
+        private Label label13;
+        private TextBox textBox4;
+        private TextBox textBox3;
+        private TextBox textBox2;
+        private TextBox textBox1;
+        private Label label18;
+        private CheckBox checkBox1;
+        private Label label19;
     }
 }
