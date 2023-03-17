@@ -97,15 +97,16 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
             // Populate dataGridView2 with Fundgegenstand data
             dGVFund.Rows.Clear();
-            dGVFund.ColumnCount = 6;
-            dGVFund.Columns[0].Name = "Kategorie";
-            dGVFund.Columns[1].Name = "Beschreibung";
-            dGVFund.Columns[2].Name = "Fundort";
-            dGVFund.Columns[3].Name = "FinderNr";
-            dGVFund.Columns[4].Name = "EigentumNr";
-            dGVFund.Columns[5].Name = "Funddatum";
+            dGVFund.ColumnCount = 7;
+            dGVFund.Columns[0].Name = "Gnr";
+            dGVFund.Columns[1].Name = "Kategorie";
+            dGVFund.Columns[2].Name = "Beschreibung";
+            dGVFund.Columns[3].Name = "Fundort";
+            dGVFund.Columns[4].Name = "FinderNr";
+            dGVFund.Columns[5].Name = "Eigentumer";
+            dGVFund.Columns[6].Name = "Funddatum";
             listData = dbase.QueryToArrayList($@"
-           SELECT kat.Bezeichnung, fg.Beschreibung, fo.Bezeichnung as Fundort, fg.FinderNr, fg.EigentumNr, DATE_FORMAT(fg.Funddatum, '%d.%m.%Y') as Funddatum 
+           SELECT Gnr ,kat.Bezeichnung, fg.Beschreibung, fo.Bezeichnung as Fundort, fg.FinderNr, fg.EigentumNr, DATE_FORMAT(fg.Funddatum, '%d.%m.%Y') as Funddatum 
             FROM fundgegenstand fg
             JOIN fundort fo ON fg.FundortID = fo.FundortID
             JOIN kategorie kat ON fg.KatID = kat.KatID
@@ -375,8 +376,34 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Get the selected row from the Verlustmeldung datagrid
+            if (dGVVerluste.SelectedRows.Count == 1)
+            {
+                DataGridViewRow row = dGVVerluste.SelectedRows[0];
+                string verlustNr = row.Cells["VerlustNr"].Value.ToString();
+
+                // Pass the verlustNr value to the next tabpage
+                tPEigentuemer.Tag = verlustNr;
+            }
+
+            // Get the selected row from the Fundgegenstand datagrid
+            if (dGVFund.SelectedRows.Count == 1)
+            {
+                DataGridViewRow row = dGVFund.SelectedRows[0];
+                string gnr = row.Cells["Gnr"].Value.ToString();
+
+                // Pass the gnr value to the next tabpage
+                tPEigentuemer.Tag += "," + gnr;
+            }
+
+            // Select the next tabpage
+            EigentuemerTab.SelectedTab = tPEigentuemer;
+            // Move to the next tab page
 
 
+        }
     }
 }
 
