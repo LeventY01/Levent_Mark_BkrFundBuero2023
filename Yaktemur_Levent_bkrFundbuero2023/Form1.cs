@@ -48,7 +48,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
         private void Fill_Daten()
         {
-            // Populate dataGridView with Fundgegenstand data
+            // Populate dataGridView with Fundggenstand data
             dGVFundgegenstand.Rows.Clear();
             dGVFundgegenstand.ColumnCount = 3;
             dGVFundgegenstand.Columns[0].Name = "Beschreibung";
