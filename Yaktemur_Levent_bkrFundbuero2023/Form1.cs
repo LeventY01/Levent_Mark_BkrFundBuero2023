@@ -1,6 +1,5 @@
 using System.Security.Cryptography;
 using System.Text;
-using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 
 namespace Yaktemur_Levent_bkrFundbuero2023
@@ -51,18 +50,18 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
         private void Fill_Daten()
         {
+            // Populate dataGridView with Fundgegenstand data
             dGVFundgegenstand.Rows.Clear();
             dGVFundgegenstand.ColumnCount = 3;
-            dGVFundgegenstand.Columns[0].Name = "Beshreibung";
+            dGVFundgegenstand.Columns[0].Name = "Beschreibung";
             dGVFundgegenstand.Columns[1].Name = "Funddatum";
-            dGVFundgegenstand.Columns[2].Name = "Fundrt";
+            dGVFundgegenstand.Columns[2].Name = "Fundort";
 
             List<string[]> listData = dbase.QueryToArrayList($@"
             SELECT fg.Beschreibung, DATE_FORMAT(fg.Funddatum, '%d.%m.%Y') as Funddatum, fo.Bezeichnung as Fundort 
             FROM fundgegenstand fg
             JOIN fundort fo ON fg.FundortID = fo.FundortID
-            WHERE fg.KatID = '{cBKatAuswahl.SelectedIndex + 1}';
-    ");
+            WHERE fg.KatID = '{cBKatAuswahl.SelectedIndex + 1}'; ");
 
             foreach (string[] item in listData)
             {
@@ -70,6 +69,55 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             }
 
             lblCount.Text = dbase.QueryToCell($"SELECT COUNT(*) FROM fundgegenstand WHERE KatID = '{cBKatAuswahl.SelectedIndex + 1}';");
+
+            // Populate dataGridView1 with Verlustmeldung data
+            dataGridView1.Rows.Clear();
+            dataGridView1.ColumnCount = 7;
+            dataGridView1.Columns[0].Name = "VerlustNr";
+            dataGridView1.Columns[1].Name = "Beschreibung";
+            dataGridView1.Columns[2].Name = "VerlustOrt";
+            dataGridView1.Columns[3].Name = "Verlustdatum";
+            dataGridView1.Columns[4].Name = "Telefonnummer";
+            dataGridView1.Columns[5].Name = "Email";
+            dataGridView1.Columns[6].Name = "Eigentumer";
+
+            listData = dbase.QueryToArrayList($@"
+            SELECT vm.VerlustNr, vm.Beschreibung, fo.Bezeichnung as Verlustort, 
+            DATE_FORMAT(vm.Verlustdatum, '%d.%m.%Y') as Verlustdatum, vm.Telefonnummer, 
+            vm.Email,  vm.EigentumNr
+            FROM Verlustmeldung vm
+            LEFT JOIN eigentuemer eig ON vm.EigentumNr = eig.EigentumNr
+            JOIN fundort fo ON vm.VerlustOrt = fo.FundortID
+            WHERE vm.EigentumNr IS NULL;");
+
+            foreach (string[] item in listData)
+            {
+                dataGridView1.Rows.Add(item);
+            }
+
+            // Populate dataGridView2 with Fundgegenstand data
+            dataGridView2.Rows.Clear();
+            dataGridView2.ColumnCount = 6;
+            dataGridView2.Columns[0].Name = "Kategorie";
+            dataGridView2.Columns[1].Name = "Beschreibung";
+            dataGridView2.Columns[2].Name = "Fundort";
+            dataGridView2.Columns[3].Name = "FinderNr";
+            dataGridView2.Columns[4].Name = "EigentumNr";
+            dataGridView2.Columns[5].Name = "Funddatum";
+            listData = dbase.QueryToArrayList($@"
+            SELECT kat.Bezeichnung, fg.Beschreibung, fo.Bezeichnung as Fundort, fg.FinderNr, fg.EigentumNr, DATE_FORMAT(fg.Funddatum, '%d.%m.%Y') as Funddatum 
+            FROM fundgegenstand fg
+            JOIN fundort fo ON fg.FundortID = fo.FundortID
+            JOIN kategorie kat ON fg.KatID = kat.KatID;");
+
+            foreach (string[] item in listData)
+            {
+                dataGridView2.Rows.Add(item);
+            }
+
+
+
+
         }
 
 
@@ -124,8 +172,6 @@ namespace Yaktemur_Levent_bkrFundbuero2023
         {
 
         }
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             string beschreibung = textBox3.Text;
@@ -133,25 +179,16 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             DateTime verlustdatum = dTPDatum.Value;
             string telefonnummer = textBox2.Text;
             string email = textBox1.Text;
-            string eigentumNr = tBFundgegenstand.Text;
-
-            if (checkBox1.Checked)
-            {
-                eigentumNr = "100";
-            }
-
+            string eigentumNr = checkBox1.Checked ? "100" : "NULL";
             string fundortID = dbase.QueryToCell($"SELECT FundortID FROM fundort WHERE Bezeichnung = '{fundort}'");
 
-
             dbase.QueryToList($"INSERT INTO verlustmeldung (Beschreibung, VerlustOrt, Verlustdatum, Telefonnummer, EMail, EigentumNr) " +
-       $"VALUES ('{beschreibung}', '{fundortID}', '{verlustdatum:yyyy-MM-dd}', '{telefonnummer}', '{email}', '{eigentumNr}');");
-
+            $"VALUES ('{beschreibung}', '{fundortID}', '{verlustdatum:yyyy-MM-dd}', '{telefonnummer}', '{email}', {eigentumNr});");
 
             MessageBox.Show("Erfolgreich Aufgegeben!");
             textBox3.Clear();
             comboBox3.SelectedIndex = -1;
             dTPDatum.Value = DateTime.Now;
-            tBFundgegenstand.Clear();
             textBox2.Clear();
             textBox1.Clear();
         }
@@ -229,6 +266,11 @@ namespace Yaktemur_Levent_bkrFundbuero2023
         }
 
         private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
 
         }

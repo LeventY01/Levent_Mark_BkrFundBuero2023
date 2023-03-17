@@ -49,7 +49,6 @@
             lblEmail = new Label();
             button1 = new Button();
             dTPDatum = new DateTimePicker();
-            tBFundgegenstand = new TextBox();
             lblFundgegenstand = new Label();
             lblKategorie2 = new Label();
             lblDatum = new Label();
@@ -64,7 +63,9 @@
             tBUsername = new TextBox();
             tPVermittlung = new TabPage();
             tableLayoutPanel4 = new TableLayoutPanel();
-            btnAbmelden2 = new Button();
+            dataGridView1 = new DataGridView();
+            dataGridView2 = new DataGridView();
+            label12 = new Label();
             tPStatistik = new TabPage();
             tableLayoutPanel3 = new TableLayoutPanel();
             btnAbmelden = new Button();
@@ -95,6 +96,7 @@
             comboBox2 = new ComboBox();
             textBox4 = new TextBox();
             comboBox1 = new ComboBox();
+            label11 = new Label();
             mySqlCommand1 = new MySqlConnector.MySqlCommand();
             tableLayoutPanel1.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -107,6 +109,8 @@
             panel2.SuspendLayout();
             tPVermittlung.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             tPStatistik.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cStatistik).BeginInit();
@@ -119,14 +123,19 @@
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 95.67148F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 4.32852364F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel1.Controls.Add(tabControl1, 0, 0);
+            tableLayoutPanel1.Controls.Add(label11, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 92.44444F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.555555F));
-            tableLayoutPanel1.Size = new Size(1216, 555);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 92.24138F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 7.75862074F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel1.Size = new Size(1728, 696);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tabControl1
@@ -142,7 +151,7 @@
             tabControl1.Location = new Point(3, 3);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1157, 507);
+            tabControl1.Size = new Size(1647, 636);
             tabControl1.SizeMode = TabSizeMode.FillToRight;
             tabControl1.TabIndex = 0;
             // 
@@ -152,7 +161,7 @@
             tPFundgegenstand.Location = new Point(4, 32);
             tPFundgegenstand.Name = "tPFundgegenstand";
             tPFundgegenstand.Padding = new Padding(3);
-            tPFundgegenstand.Size = new Size(1149, 471);
+            tPFundgegenstand.Size = new Size(1639, 600);
             tPFundgegenstand.TabIndex = 0;
             tPFundgegenstand.Text = "Fundgegenstände";
             tPFundgegenstand.UseVisualStyleBackColor = true;
@@ -171,7 +180,7 @@
             tableLayoutPanel2.RowCount = 2;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 91.03261F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.967391F));
-            tableLayoutPanel2.Size = new Size(1143, 465);
+            tableLayoutPanel2.Size = new Size(1633, 594);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // dGVFundgegenstand
@@ -182,7 +191,7 @@
             dGVFundgegenstand.Name = "dGVFundgegenstand";
             dGVFundgegenstand.RowHeadersWidth = 51;
             dGVFundgegenstand.RowTemplate.Height = 29;
-            dGVFundgegenstand.Size = new Size(915, 417);
+            dGVFundgegenstand.Size = new Size(1309, 534);
             dGVFundgegenstand.TabIndex = 1;
             dGVFundgegenstand.CellContentClick += dGVFundgegenstand_CellContentClick;
             // 
@@ -191,9 +200,9 @@
             panel1.Controls.Add(cBKatAuswahl);
             panel1.Controls.Add(lblKategorie1);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(924, 3);
+            panel1.Location = new Point(1318, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(216, 417);
+            panel1.Size = new Size(312, 534);
             panel1.TabIndex = 3;
             // 
             // cBKatAuswahl
@@ -202,7 +211,7 @@
             cBKatAuswahl.FormattingEnabled = true;
             cBKatAuswahl.Location = new Point(3, 23);
             cBKatAuswahl.Name = "cBKatAuswahl";
-            cBKatAuswahl.Size = new Size(207, 28);
+            cBKatAuswahl.Size = new Size(303, 28);
             cBKatAuswahl.TabIndex = 3;
             cBKatAuswahl.SelectedIndexChanged += cBKatAuswahl_SelectedIndexChanged;
             // 
@@ -220,7 +229,7 @@
             // 
             lblCount.Anchor = AnchorStyles.None;
             lblCount.AutoSize = true;
-            lblCount.Location = new Point(436, 434);
+            lblCount.Location = new Point(633, 557);
             lblCount.Name = "lblCount";
             lblCount.Size = new Size(48, 20);
             lblCount.TabIndex = 4;
@@ -236,7 +245,6 @@
             tPVerlustmeldung.Controls.Add(lblEmail);
             tPVerlustmeldung.Controls.Add(button1);
             tPVerlustmeldung.Controls.Add(dTPDatum);
-            tPVerlustmeldung.Controls.Add(tBFundgegenstand);
             tPVerlustmeldung.Controls.Add(lblFundgegenstand);
             tPVerlustmeldung.Controls.Add(lblKategorie2);
             tPVerlustmeldung.Controls.Add(lblDatum);
@@ -245,7 +253,7 @@
             tPVerlustmeldung.Location = new Point(4, 32);
             tPVerlustmeldung.Name = "tPVerlustmeldung";
             tPVerlustmeldung.Padding = new Padding(3);
-            tPVerlustmeldung.Size = new Size(1149, 471);
+            tPVerlustmeldung.Size = new Size(1639, 600);
             tPVerlustmeldung.TabIndex = 1;
             tPVerlustmeldung.Text = "Verlustmeldung";
             tPVerlustmeldung.UseVisualStyleBackColor = true;
@@ -253,7 +261,7 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(630, 90);
+            checkBox1.Location = new Point(845, 65);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(86, 24);
             checkBox1.TabIndex = 17;
@@ -263,7 +271,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(56, 53);
+            textBox3.Location = new Point(56, 67);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(125, 27);
             textBox3.TabIndex = 16;
@@ -271,7 +279,7 @@
             // textBox2
             // 
             textBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox2.Location = new Point(56, 117);
+            textBox2.Location = new Point(56, 181);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(217, 27);
             textBox2.TabIndex = 15;
@@ -279,7 +287,7 @@
             // textBox1
             // 
             textBox1.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            textBox1.Location = new Point(56, 202);
+            textBox1.Location = new Point(56, 309);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(217, 27);
             textBox1.TabIndex = 14;
@@ -288,7 +296,7 @@
             // 
             lblTelefon.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblTelefon.AutoSize = true;
-            lblTelefon.Location = new Point(56, 94);
+            lblTelefon.Location = new Point(56, 139);
             lblTelefon.Name = "lblTelefon";
             lblTelefon.Size = new Size(113, 20);
             lblTelefon.TabIndex = 13;
@@ -298,7 +306,7 @@
             // 
             lblEmail.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblEmail.AutoSize = true;
-            lblEmail.Location = new Point(56, 168);
+            lblEmail.Location = new Point(56, 271);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(52, 20);
             lblEmail.TabIndex = 12;
@@ -307,7 +315,7 @@
             // button1
             // 
             button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button1.Location = new Point(309, 419);
+            button1.Location = new Point(343, 434);
             button1.Name = "button1";
             button1.Size = new Size(511, 29);
             button1.TabIndex = 11;
@@ -317,26 +325,19 @@
             // 
             // dTPDatum
             // 
-            dTPDatum.Location = new Point(370, 53);
+            dTPDatum.Location = new Point(482, 65);
             dTPDatum.Name = "dTPDatum";
             dTPDatum.Size = new Size(250, 27);
             dTPDatum.TabIndex = 10;
             // 
-            // tBFundgegenstand
-            // 
-            tBFundgegenstand.Location = new Point(626, 53);
-            tBFundgegenstand.Name = "tBFundgegenstand";
-            tBFundgegenstand.Size = new Size(185, 27);
-            tBFundgegenstand.TabIndex = 9;
-            // 
             // lblFundgegenstand
             // 
             lblFundgegenstand.AutoSize = true;
-            lblFundgegenstand.Location = new Point(626, 27);
+            lblFundgegenstand.Location = new Point(845, 27);
             lblFundgegenstand.Name = "lblFundgegenstand";
-            lblFundgegenstand.Size = new Size(110, 20);
+            lblFundgegenstand.Size = new Size(72, 20);
             lblFundgegenstand.TabIndex = 8;
-            lblFundgegenstand.Text = "Eigentum/nicht";
+            lblFundgegenstand.Text = "Meldung ";
             // 
             // lblKategorie2
             // 
@@ -350,7 +351,7 @@
             // lblDatum
             // 
             lblDatum.AutoSize = true;
-            lblDatum.Location = new Point(370, 27);
+            lblDatum.Location = new Point(482, 27);
             lblDatum.Name = "lblDatum";
             lblDatum.Size = new Size(54, 20);
             lblDatum.TabIndex = 4;
@@ -359,7 +360,7 @@
             // lblFundort
             // 
             lblFundort.AutoSize = true;
-            lblFundort.Location = new Point(201, 27);
+            lblFundort.Location = new Point(242, 27);
             lblFundort.Name = "lblFundort";
             lblFundort.Size = new Size(72, 20);
             lblFundort.TabIndex = 3;
@@ -368,7 +369,7 @@
             // comboBox3
             // 
             comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(201, 50);
+            comboBox3.Location = new Point(242, 67);
             comboBox3.Name = "comboBox3";
             comboBox3.Size = new Size(151, 28);
             comboBox3.TabIndex = 1;
@@ -378,7 +379,7 @@
             tPLogin.Controls.Add(panel2);
             tPLogin.Location = new Point(4, 32);
             tPLogin.Name = "tPLogin";
-            tPLogin.Size = new Size(1149, 471);
+            tPLogin.Size = new Size(1639, 600);
             tPLogin.TabIndex = 2;
             tPLogin.Text = "Admin login";
             tPLogin.UseVisualStyleBackColor = true;
@@ -446,45 +447,70 @@
             // tPVermittlung
             // 
             tPVermittlung.Controls.Add(tableLayoutPanel4);
+            tPVermittlung.Controls.Add(label12);
             tPVermittlung.Location = new Point(4, 32);
             tPVermittlung.Name = "tPVermittlung";
-            tPVermittlung.Size = new Size(1149, 471);
+            tPVermittlung.Size = new Size(1639, 600);
             tPVermittlung.TabIndex = 3;
             tPVermittlung.Text = "Vermittlung";
             tPVermittlung.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel4
             // 
-            tableLayoutPanel4.ColumnCount = 2;
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 87.90419F));
-            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12.09581F));
-            tableLayoutPanel4.Controls.Add(btnAbmelden2, 1, 1);
-            tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(0, 0);
+            tableLayoutPanel4.ColumnCount = 1;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Controls.Add(dataGridView1, 0, 1);
+            tableLayoutPanel4.Controls.Add(dataGridView2, 0, 0);
+            tableLayoutPanel4.Location = new Point(-7, 34);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 2;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 89.03743F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 10.96257F));
-            tableLayoutPanel4.Size = new Size(1149, 471);
-            tableLayoutPanel4.TabIndex = 0;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 274F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel4.Size = new Size(1668, 593);
+            tableLayoutPanel4.TabIndex = 4;
             // 
-            // btnAbmelden2
+            // dataGridView1
             // 
-            btnAbmelden2.Dock = DockStyle.Fill;
-            btnAbmelden2.Location = new Point(1013, 422);
-            btnAbmelden2.Name = "btnAbmelden2";
-            btnAbmelden2.Size = new Size(133, 46);
-            btnAbmelden2.TabIndex = 1;
-            btnAbmelden2.Text = "Abmelden";
-            btnAbmelden2.UseVisualStyleBackColor = true;
-            btnAbmelden2.Click += btnAbmelden_Click;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Location = new Point(3, 322);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersWidth = 51;
+            dataGridView1.RowTemplate.Height = 29;
+            dataGridView1.Size = new Size(1555, 180);
+            dataGridView1.TabIndex = 0;
+            dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Location = new Point(3, 3);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowHeadersWidth = 51;
+            dataGridView2.RowTemplate.Height = 29;
+            dataGridView2.Size = new Size(1555, 260);
+            dataGridView2.TabIndex = 1;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(5, 11);
+            label12.Name = "label12";
+            label12.Size = new Size(127, 20);
+            label12.TabIndex = 3;
+            label12.Text = "Fundgegenstände";
             // 
             // tPStatistik
             // 
             tPStatistik.Controls.Add(tableLayoutPanel3);
             tPStatistik.Location = new Point(4, 32);
             tPStatistik.Name = "tPStatistik";
-            tPStatistik.Size = new Size(1149, 471);
+            tPStatistik.Size = new Size(1639, 600);
             tPStatistik.TabIndex = 4;
             tPStatistik.Text = "Statistik";
             tPStatistik.UseVisualStyleBackColor = true;
@@ -503,15 +529,15 @@
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 90.10695F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 9.893048F));
-            tableLayoutPanel3.Size = new Size(1149, 471);
+            tableLayoutPanel3.Size = new Size(1639, 600);
             tableLayoutPanel3.TabIndex = 0;
             // 
             // btnAbmelden
             // 
             btnAbmelden.Dock = DockStyle.Fill;
-            btnAbmelden.Location = new Point(994, 427);
+            btnAbmelden.Location = new Point(1417, 543);
             btnAbmelden.Name = "btnAbmelden";
-            btnAbmelden.Size = new Size(152, 41);
+            btnAbmelden.Size = new Size(219, 54);
             btnAbmelden.TabIndex = 0;
             btnAbmelden.Text = "Abmelden";
             btnAbmelden.UseVisualStyleBackColor = true;
@@ -532,7 +558,7 @@
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             cStatistik.Series.Add(series1);
-            cStatistik.Size = new Size(985, 418);
+            cStatistik.Size = new Size(1408, 534);
             cStatistik.TabIndex = 1;
             // 
             // panel3
@@ -542,9 +568,9 @@
             panel3.Controls.Add(cBJahr);
             panel3.Controls.Add(lblJahr);
             panel3.Dock = DockStyle.Fill;
-            panel3.Location = new Point(994, 3);
+            panel3.Location = new Point(1417, 3);
             panel3.Name = "panel3";
-            panel3.Size = new Size(152, 418);
+            panel3.Size = new Size(219, 534);
             panel3.TabIndex = 2;
             // 
             // btnVerloren
@@ -552,7 +578,7 @@
             btnVerloren.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnVerloren.Location = new Point(3, 103);
             btnVerloren.Name = "btnVerloren";
-            btnVerloren.Size = new Size(146, 29);
+            btnVerloren.Size = new Size(213, 29);
             btnVerloren.TabIndex = 3;
             btnVerloren.Text = "Verloren";
             btnVerloren.UseVisualStyleBackColor = true;
@@ -562,7 +588,7 @@
             btnGefunden.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             btnGefunden.Location = new Point(3, 68);
             btnGefunden.Name = "btnGefunden";
-            btnGefunden.Size = new Size(146, 29);
+            btnGefunden.Size = new Size(213, 29);
             btnGefunden.TabIndex = 2;
             btnGefunden.Text = "Gefunden";
             btnGefunden.UseVisualStyleBackColor = true;
@@ -574,7 +600,7 @@
             cBJahr.FormattingEnabled = true;
             cBJahr.Location = new Point(3, 23);
             cBJahr.Name = "cBJahr";
-            cBJahr.Size = new Size(146, 28);
+            cBJahr.Size = new Size(213, 28);
             cBJahr.TabIndex = 1;
             // 
             // lblJahr
@@ -611,7 +637,7 @@
             tabPage1.Controls.Add(comboBox1);
             tabPage1.Location = new Point(4, 32);
             tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(1149, 471);
+            tabPage1.Size = new Size(1639, 600);
             tabPage1.TabIndex = 5;
             tabPage1.Text = "Fundgegenstand Abgeben";
             tabPage1.UseVisualStyleBackColor = true;
@@ -701,7 +727,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(347, 397);
+            button2.Location = new Point(407, 407);
             button2.Name = "button2";
             button2.Size = new Size(376, 29);
             button2.TabIndex = 9;
@@ -765,7 +791,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(453, 76);
+            comboBox2.Location = new Point(453, 77);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(151, 28);
             comboBox2.TabIndex = 2;
@@ -780,10 +806,19 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(25, 77);
+            comboBox1.Location = new Point(25, 76);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 0;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(3, 642);
+            label11.Name = "label11";
+            label11.Size = new Size(128, 20);
+            label11.TabIndex = 2;
+            label11.Text = "VerlustMeldungen";
             // 
             // mySqlCommand1
             // 
@@ -796,12 +831,13 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1216, 555);
+            ClientSize = new Size(1728, 696);
             Controls.Add(tableLayoutPanel1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
             tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
             tabControl1.ResumeLayout(false);
             tPFundgegenstand.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
@@ -815,7 +851,10 @@
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             tPVermittlung.ResumeLayout(false);
+            tPVermittlung.PerformLayout();
             tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             tPStatistik.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)cStatistik).EndInit();
@@ -837,7 +876,6 @@
         private ComboBox cBKatAuswahl;
         private Label lblKategorie1;
         private TabPage tPVerlustmeldung;
-        private TextBox tBFundgegenstand;
         private Label lblFundgegenstand;
         private Label lblKategorie2;
         private Label lblDatum;
@@ -861,8 +899,6 @@
         private Label lblTelefon;
         private Label lblEmail;
         private Button btnAbmelden;
-        private TableLayoutPanel tableLayoutPanel4;
-        private Button btnAbmelden2;
         private TextBox textBox3;
         private CheckBox checkBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart cStatistik;
@@ -893,5 +929,10 @@
         private TextBox textBox7;
         private TextBox textBox6;
         private TextBox textBox5;
+        private TableLayoutPanel tableLayoutPanel4;
+        private DataGridView dataGridView1;
+        private DataGridView dataGridView2;
+        private Label label11;
+        private Label label12;
     }
 }
