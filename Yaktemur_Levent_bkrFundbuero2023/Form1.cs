@@ -32,7 +32,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             List<string> listData = dbase.QueryToList("SELECT Bezeichnung FROM kategorie;");
             cBKatAuswahl.DataSource = listData;
 
-            // fill the Verlustort with fundort data
+            // fill the comboBox3 with fundort data
             listData = dbase.QueryToList("SELECT Bezeichnung FROM fundort;");
             cBVerlustort.DataSource = listData;
 
@@ -42,9 +42,6 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
             listData = dbase.QueryToList("SELECT Bezeichnung FROM fundort;");
             cBFundort.DataSource = listData;
-
-
-
         }
 
         private void Fill_Daten()
@@ -187,6 +184,8 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             dTPDatum.Value = DateTime.Now;
             tBTelefon.Clear();
             tBEmail.Clear();
+
+            Fill_Daten();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -273,7 +272,11 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             tBTelefon2.Clear();
             tBEmail2.Clear();
 
+
+            Fill_Daten();
         }
+
+
 
         private void label10_Click(object sender, EventArgs e)
         {
