@@ -3,7 +3,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
-namespace Yaktemur_Levent_bkrFundbuero2023
+namespace Starodubzev_Mark_bkrFundbuero2023
 {
     public partial class Form1 : Form
     {

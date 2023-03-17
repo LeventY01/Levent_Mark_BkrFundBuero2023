@@ -1,4 +1,4 @@
-﻿namespace Yaktemur_Levent_bkrFundbuero2023
+﻿namespace Starodubzev_Mark_bkrFundbuero2023
 {
     partial class Form1
     {

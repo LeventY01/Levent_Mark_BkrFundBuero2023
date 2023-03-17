@@ -7,7 +7,7 @@ using MySqlConnector;
 using System.Windows.Forms;
 using System.Data;
 
-namespace Yaktemur_Levent_bkrFundbuero2023
+namespace Starodubzev_Mark_bkrFundbuero2023
 {
     internal class Dbase
     {
