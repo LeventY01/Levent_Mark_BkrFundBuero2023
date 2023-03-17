@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             tableLayoutPanel1 = new TableLayoutPanel();
             EigentuemerTab = new TabControl();
             tPFundgegenstand = new TabPage();
@@ -98,17 +98,17 @@
             cBKategorie = new ComboBox();
             tPEigentuemer = new TabPage();
             label18 = new Label();
-            checkBox1 = new CheckBox();
+            chBAnonym3 = new CheckBox();
             button1 = new Button();
             label17 = new Label();
             label16 = new Label();
             label15 = new Label();
             label14 = new Label();
             label13 = new Label();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            tBEmail3 = new TextBox();
+            tBTelefon3 = new TextBox();
+            tBNachname2 = new TextBox();
+            tBVorname2 = new TextBox();
             mySqlCommand1 = new MySqlConnector.MySqlCommand();
             tableLayoutPanel1.SuspendLayout();
             EigentuemerTab.SuspendLayout();
@@ -557,19 +557,19 @@
             // 
             // cStatistik
             // 
-            chartArea1.Name = "ChartArea1";
-            cStatistik.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            cStatistik.ChartAreas.Add(chartArea2);
             cStatistik.Dock = DockStyle.Fill;
-            legend1.Name = "Legend1";
-            cStatistik.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            cStatistik.Legends.Add(legend2);
             cStatistik.Location = new Point(3, 3);
             cStatistik.Name = "cStatistik";
             cStatistik.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Berry;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            cStatistik.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            cStatistik.Series.Add(series2);
             cStatistik.Size = new Size(1408, 534);
             cStatistik.TabIndex = 1;
             // 
@@ -825,17 +825,17 @@
             // tPEigentuemer
             // 
             tPEigentuemer.Controls.Add(label18);
-            tPEigentuemer.Controls.Add(checkBox1);
+            tPEigentuemer.Controls.Add(chBAnonym3);
             tPEigentuemer.Controls.Add(button1);
             tPEigentuemer.Controls.Add(label17);
             tPEigentuemer.Controls.Add(label16);
             tPEigentuemer.Controls.Add(label15);
             tPEigentuemer.Controls.Add(label14);
             tPEigentuemer.Controls.Add(label13);
-            tPEigentuemer.Controls.Add(textBox4);
-            tPEigentuemer.Controls.Add(textBox3);
-            tPEigentuemer.Controls.Add(textBox2);
-            tPEigentuemer.Controls.Add(textBox1);
+            tPEigentuemer.Controls.Add(tBEmail3);
+            tPEigentuemer.Controls.Add(tBTelefon3);
+            tPEigentuemer.Controls.Add(tBNachname2);
+            tPEigentuemer.Controls.Add(tBVorname2);
             tPEigentuemer.Location = new Point(4, 32);
             tPEigentuemer.Name = "tPEigentuemer";
             tPEigentuemer.Size = new Size(1639, 600);
@@ -852,15 +852,15 @@
             label18.TabIndex = 11;
             label18.Text = "oder Anonym";
             // 
-            // checkBox1
+            // chBAnonym3
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(444, 98);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(86, 24);
-            checkBox1.TabIndex = 10;
-            checkBox1.Text = "Anonym";
-            checkBox1.UseVisualStyleBackColor = true;
+            chBAnonym3.AutoSize = true;
+            chBAnonym3.Location = new Point(444, 98);
+            chBAnonym3.Name = "chBAnonym3";
+            chBAnonym3.Size = new Size(86, 24);
+            chBAnonym3.TabIndex = 10;
+            chBAnonym3.Text = "Anonym";
+            chBAnonym3.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -917,33 +917,33 @@
             label13.TabIndex = 4;
             label13.Text = "Vorname";
             // 
-            // textBox4
+            // tBEmail3
             // 
-            textBox4.Location = new Point(214, 362);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(125, 27);
-            textBox4.TabIndex = 3;
+            tBEmail3.Location = new Point(214, 362);
+            tBEmail3.Name = "tBEmail3";
+            tBEmail3.Size = new Size(125, 27);
+            tBEmail3.TabIndex = 3;
             // 
-            // textBox3
+            // tBTelefon3
             // 
-            textBox3.Location = new Point(214, 265);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 2;
+            tBTelefon3.Location = new Point(214, 265);
+            tBTelefon3.Name = "tBTelefon3";
+            tBTelefon3.Size = new Size(125, 27);
+            tBTelefon3.TabIndex = 2;
             // 
-            // textBox2
+            // tBNachname2
             // 
-            textBox2.Location = new Point(214, 185);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 1;
+            tBNachname2.Location = new Point(214, 185);
+            tBNachname2.Name = "tBNachname2";
+            tBNachname2.Size = new Size(125, 27);
+            tBNachname2.TabIndex = 1;
             // 
-            // textBox1
+            // tBVorname2
             // 
-            textBox1.Location = new Point(214, 91);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 0;
+            tBVorname2.Location = new Point(214, 91);
+            tBVorname2.Name = "tBVorname2";
+            tBVorname2.Size = new Size(125, 27);
+            tBVorname2.TabIndex = 0;
             // 
             // mySqlCommand1
             // 
@@ -1065,12 +1065,12 @@
         private Label label15;
         private Label label14;
         private Label label13;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox tBEmail3;
+        private TextBox tBTelefon3;
+        private TextBox tBNachname2;
+        private TextBox tBVorname2;
         private Label label18;
-        private CheckBox checkBox1;
+        private CheckBox chBAnonym3;
         private Label label19;
     }
 }

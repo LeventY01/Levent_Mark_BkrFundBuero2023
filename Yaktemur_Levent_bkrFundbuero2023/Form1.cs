@@ -322,7 +322,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             string eigentumNr = dbase.QueryToCell($"SELECT EigentumNr FROM verlustmeldung WHERE VerlustNr = '{verlustNr}'");
 
             // Check if the CheckBox1 is selected
-            if (checkBox1.Checked)
+            if (chBAnonym3.Checked)
             {
                 // Insert EigentumNr 100 into the verlustmeldung table
                 dbase.QueryToList($"UPDATE verlustmeldung SET EigentumNr = '100' WHERE VerlustNr = '{verlustNr}'");
@@ -330,10 +330,10 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             else
             {
                 // Get the input values for the new Eigentümer record
-                string vorname = textBox1.Text;
-                string nachname = textBox2.Text;
-                string telefonnummer = textBox3.Text;
-                string email = textBox4.Text;
+                string vorname = tBVorname2.Text;
+                string nachname = tBNachname2.Text;
+                string telefonnummer = tBTelefon3.Text;
+                string email = tBEmail3.Text;
 
 
                 if (!IsValidEmail(email))
@@ -356,10 +356,10 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             MessageBox.Show("Erfolgreich Hinzugefügt!");
 
             // Clear the input fields
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            textBox4.Clear();
+            tBVorname2.Clear();
+            tBNachname2.Clear();
+            tBTelefon3.Clear();
+            tBEmail3.Clear();
             Fill_Daten();
         }
         bool IsValidEmail(string email)
