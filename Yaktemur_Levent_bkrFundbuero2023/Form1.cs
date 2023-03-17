@@ -17,7 +17,6 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             InitializeComponent();
             tabControl1.TabPages.Remove(tPVermittlung);
             tabControl1.TabPages.Remove(tPStatistik);
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -33,9 +32,6 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             List<string> listData = dbase.QueryToList("SELECT Bezeichnung FROM kategorie;");
             cBKatAuswahl.DataSource = listData;
 
-            List<string> listData2 = dbase.QueryToList("SELECT Bezeichnung FROM kategorie;");
-            comboBox1.DataSource = listData;
-
             // fill the comboBox3 with fundort data
             listData = dbase.QueryToList("SELECT Bezeichnung FROM fundort;");
             cBVerlustort.DataSource = listData;
@@ -45,7 +41,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
 
             listData = dbase.QueryToList("SELECT Bezeichnung FROM fundort;");
-            comboBox2.DataSource = listData;
+            cBFundort.DataSource = listData;
         }
 
         private void Fill_Daten()
@@ -71,15 +67,15 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             lblCount.Text = dbase.QueryToCell($"SELECT COUNT(*) FROM fundgegenstand WHERE KatID = '{cBKatAuswahl.SelectedIndex + 1}';");
 
             // Populate dataGridView1 with Verlustmeldung data
-            dataGridView1.Rows.Clear();
-            dataGridView1.ColumnCount = 7;
-            dataGridView1.Columns[0].Name = "VerlustNr";
-            dataGridView1.Columns[1].Name = "Beschreibung";
-            dataGridView1.Columns[2].Name = "VerlustOrt";
-            dataGridView1.Columns[3].Name = "Verlustdatum";
-            dataGridView1.Columns[4].Name = "Telefonnummer";
-            dataGridView1.Columns[5].Name = "Email";
-            dataGridView1.Columns[6].Name = "Eigentumer";
+            dGVVerluste.Rows.Clear();
+            dGVVerluste.ColumnCount = 7;
+            dGVVerluste.Columns[0].Name = "VerlustNr";
+            dGVVerluste.Columns[1].Name = "Beschreibung";
+            dGVVerluste.Columns[2].Name = "VerlustOrt";
+            dGVVerluste.Columns[3].Name = "Verlustdatum";
+            dGVVerluste.Columns[4].Name = "Telefonnummer";
+            dGVVerluste.Columns[5].Name = "Email";
+            dGVVerluste.Columns[6].Name = "Eigentumer";
 
             listData = dbase.QueryToArrayList($@"
             SELECT vm.VerlustNr, vm.Beschreibung, fo.Bezeichnung as Verlustort, 
@@ -92,18 +88,18 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
             foreach (string[] item in listData)
             {
-                dataGridView1.Rows.Add(item);
+                dGVVerluste.Rows.Add(item);
             }
 
             // Populate dataGridView2 with Fundgegenstand data
-            dataGridView2.Rows.Clear();
-            dataGridView2.ColumnCount = 6;
-            dataGridView2.Columns[0].Name = "Kategorie";
-            dataGridView2.Columns[1].Name = "Beschreibung";
-            dataGridView2.Columns[2].Name = "Fundort";
-            dataGridView2.Columns[3].Name = "FinderNr";
-            dataGridView2.Columns[4].Name = "EigentumNr";
-            dataGridView2.Columns[5].Name = "Funddatum";
+            dGVFund.Rows.Clear();
+            dGVFund.ColumnCount = 6;
+            dGVFund.Columns[0].Name = "Kategorie";
+            dGVFund.Columns[1].Name = "Beschreibung";
+            dGVFund.Columns[2].Name = "Fundort";
+            dGVFund.Columns[3].Name = "FinderNr";
+            dGVFund.Columns[4].Name = "EigentumNr";
+            dGVFund.Columns[5].Name = "Funddatum";
             listData = dbase.QueryToArrayList($@"
             SELECT kat.Bezeichnung, fg.Beschreibung, fo.Bezeichnung as Fundort, fg.FinderNr, fg.EigentumNr, DATE_FORMAT(fg.Funddatum, '%d.%m.%Y') as Funddatum 
             FROM fundgegenstand fg
@@ -112,11 +108,8 @@ namespace Yaktemur_Levent_bkrFundbuero2023
 
             foreach (string[] item in listData)
             {
-                dataGridView2.Rows.Add(item);
+                dGVFund.Rows.Add(item);
             }
-
-
-
 
         }
 
@@ -174,23 +167,23 @@ namespace Yaktemur_Levent_bkrFundbuero2023
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            string beschreibung = textBox3.Text;
+            string beschreibung = tBBeschreibung.Text;
             string fundort = cBVerlustort.SelectedItem.ToString();
             DateTime verlustdatum = dTPDatum.Value;
-            string telefonnummer = textBox2.Text;
-            string email = textBox1.Text;
-            string eigentumNr = checkBox1.Checked ? "100" : "NULL";
+            string telefonnummer = tBTelefon.Text;
+            string email = tBEmail.Text;
+            string eigentumNr = cHBAnonym.Checked ? "100" : "NULL";
             string fundortID = dbase.QueryToCell($"SELECT FundortID FROM fundort WHERE Bezeichnung = '{fundort}'");
 
             dbase.QueryToList($"INSERT INTO verlustmeldung (Beschreibung, VerlustOrt, Verlustdatum, Telefonnummer, EMail, EigentumNr) " +
             $"VALUES ('{beschreibung}', '{fundortID}', '{verlustdatum:yyyy-MM-dd}', '{telefonnummer}', '{email}', {eigentumNr});");
 
             MessageBox.Show("Erfolgreich Aufgegeben!");
-            textBox3.Clear();
+            tBBeschreibung.Clear();
             cBVerlustort.SelectedIndex = -1;
             dTPDatum.Value = DateTime.Now;
-            textBox2.Clear();
-            textBox1.Clear();
+            tBTelefon.Clear();
+            tBEmail.Clear();
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -211,7 +204,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             //s.ChartType = SeriesChartType.Spline;
             for (int i = 0; i < liste.Count; i++)
             {
-                s.Points.AddXY(liste[i][0], liste[i][1]);
+                s.Points.AddXY(liste[i][1], liste[i][0]);
             }
         }
         private void btnVerloren_Click(object sender, EventArgs e)
@@ -227,29 +220,29 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             for (int i = 0; i < liste.Count; i++)
             {
 
-                s.Points.AddXY(liste[i][0], liste[i][1]);
+                s.Points.AddXY(liste[i][1], liste[i][0]);
             }
         }
 
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string kategorie = comboBox1.SelectedItem.ToString();
-            string beschreibung = textBox4.Text;
-            string fundortID = dbase.QueryToCell($"SELECT FundortID FROM fundort WHERE Bezeichnung = '{comboBox2.SelectedItem.ToString()}'");
+            string kategorie = cBKategorie.SelectedItem.ToString();
+            string beschreibung = tBBeschreibung2.Text;
+            string fundortID = dbase.QueryToCell($"SELECT FundortID FROM fundort WHERE Bezeichnung = '{cBFundort.SelectedItem.ToString()}'");
 
             string findernr;
-            if (checkBox2.Checked)
+            if (chBAnonym2.Checked)
             {
                 findernr = "100"; // anonymous finder
             }
             else
             {
                 // insert a new finder record
-                string vorname = textBox8.Text;
-                string nachname = textBox5.Text;
-                string telefonnummer = textBox7.Text;
-                string email = textBox6.Text;
+                string vorname = tBVorname.Text;
+                string nachname = tBNachname.Text;
+                string telefonnummer = tBTelefon2.Text;
+                string email = tBEmail2.Text;
 
                 dbase.QueryToList($"INSERT INTO finder (Vorname, Nachname, Telefonnummer, EMail) " +
                     $"VALUES ('{vorname}', '{nachname}', '{telefonnummer}', '{email}');");
@@ -258,7 +251,7 @@ namespace Yaktemur_Levent_bkrFundbuero2023
                 findernr = dbase.QueryToCell($"SELECT MAX(FinderNr) FROM finder").ToString();
             }
 
-            DateTime funddatum = dateTimePicker1.Value;
+            DateTime funddatum = dTPFunddatum2.Value;
             string katID = dbase.QueryToCell($"SELECT KatID FROM Kategorie WHERE Bezeichnung = '{kategorie}'");
 
             dbase.QueryToList($"INSERT INTO fundgegenstand (KatID, Beschreibung, FundortID, FinderNr, EigentumNr, Funddatum) " +
@@ -267,15 +260,15 @@ namespace Yaktemur_Levent_bkrFundbuero2023
             MessageBox.Show("Erfolgreich Aufgegeben!");
 
             // clear the form fields
-            comboBox1.SelectedIndex = -1;
-            textBox4.Clear();
-            comboBox2.SelectedIndex = -1;
-            checkBox2.Checked = false;
-            dateTimePicker1.Value = DateTime.Now;
-            textBox8.Clear();
-            textBox5.Clear();
-            textBox7.Clear();
-            textBox6.Clear();
+            cBKategorie.SelectedIndex = -1;
+            tBBeschreibung2.Clear();
+            cBFundort.SelectedIndex = -1;
+            chBAnonym2.Checked = false;
+            dTPFunddatum2.Value = DateTime.Now;
+            tBVorname.Clear();
+            tBNachname.Clear();
+            tBTelefon2.Clear();
+            tBEmail2.Clear();
 
         }
 
